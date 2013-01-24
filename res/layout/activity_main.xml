@@ -10,5 +10,12 @@
         android:layout_centerVertical="true"
         android:text="@string/hello_world"
         tools:context=".MainActivity" />
+    
+    
+    <Button android:id="@+id/scan_anything"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="scan_anything"/>
+  
 
 </RelativeLayout>
