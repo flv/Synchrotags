@@ -20,6 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ScrollableGeneric"
+            android:label="@string/title_activity_scrollable_generic" >
+        </activity>
+        <activity
+            android:name=".AddQRcode"
+            android:label="@string/title_activity_add_qrcode" >
+        </activity>
+        <activity
+            android:name=".CaptureQrCode"
+            android:label="@string/title_activity_capture_qr_code" >
+        </activity>
     </application>
 
 </manifest>
