@@ -1,8 +1,13 @@
 <resources>
 
     <string name="app_name">Synchrotags</string>
-    <string name="hello_world">Hello world! youhou</string>
+    <string name="nom_appli">Projet SynchroTags</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_scrollable_generic">ScrollableGeneric</string>
+    <string name="node_path">/bidule/truc</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_qrcode">AddQRcode</string>
+    <string name="title_activity_capture_qr_code">CaptureQrCode</string>
 
 </resources>
