@@ -11,21 +11,20 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 public class AddQRcode extends Activity {
-	private String parent ="null";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_qrcode);
         Intent intent = getIntent();
-        parent = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String qrcode = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         findViewById(R.id.recherche_parent).setOnClickListener(rechercheparent);
         findViewById(R.id.add_meta).setOnClickListener(meta);
         findViewById(R.id.validation).setOnClickListener(validation);
         
         EditText paramParent = null;
         paramParent = (EditText)findViewById(R.id.saisie_nom);
-        if(parent != null)
-        	paramParent.setHint(parent);
+        if(qrcode != null)
+        	paramParent.setHint(qrcode);
         
     }
 
@@ -54,7 +53,7 @@ public class AddQRcode extends Activity {
 		 public final OnClickListener validation = new OnClickListener() {
 				
 				public void onClick(View v) {
-					Intent intent = new Intent(getBaseContext(), CaptureQrCode.class);
+					Intent intent = new Intent(getBaseContext(), MainActivity.class);
 					startActivity(intent);
 				}
 			};
