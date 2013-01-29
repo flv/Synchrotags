@@ -18,11 +18,12 @@ public class HTTPPoster {
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost request = new HttpPost(url);
         HttpEntity entity;
-        //StringEntity s = new StringEntity(c.toString());
-        SimpleMultipartEntity mult = new SimpleMultipartEntity();
-        mult.addPart("batman", c.toString());
-        //mult.setContentEncoding(new BasicHeader("UTF_8", "application/json"));
-        entity = mult;
+        StringEntity s = new StringEntity(c.toString());
+        //multipart for PHP servers
+       // SimpleMultipartEntity s = new SimpleMultipartEntity();
+       // s.addPart("form", c.toString());
+        s.setContentEncoding(new BasicHeader("UTF_8", "application/json"));
+        entity = s;
         request.setEntity(entity);
         HttpResponse response;
         response = httpclient.execute(request);

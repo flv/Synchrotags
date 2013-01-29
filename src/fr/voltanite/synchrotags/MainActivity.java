@@ -77,7 +77,8 @@ public class MainActivity extends Activity {
 			try {
 				jtest.put("batman", "truc");
 //				String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
-				String url = "http://n0m.fr/testandroidjson.php?";
+//				String url = "http://n0m.fr/testandroidjson.php?";
+				String url = "http://192.168.5.71:9000/iut-manager-web/departement.do?action=truc";
 				HttpResponse re = HTTPPoster.doPost(url, jtest);
 				String temp = EntityUtils.toString(re.getEntity());
 				if (temp.compareTo("SUCCESS")==0)
