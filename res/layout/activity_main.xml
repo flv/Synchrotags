@@ -32,4 +32,13 @@
         android:layout_marginTop="50dp"
         android:text="scan_anything" />
 
+    <Button
+        android:id="@+id/continuous_scan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/show_base"
+        android:layout_marginTop="114dp"
+        android:text="continuous qr code" />
+
 </RelativeLayout>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-     android:background="#000000" >
+    >
 
     <EditText
         android:id="@+id/saisie_nom"
@@ -34,7 +34,7 @@
         android:layout_below="@+id/saisie_desc"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:text="Saisir le parent" 
+        android:text="1" 
     />
 
     <Button
