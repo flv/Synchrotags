@@ -12,25 +12,28 @@ import android.widget.TextView;
 import fr.voltanite.noeud.NoMatchableNodeException;
 import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
-import fr.voltanite.synchrotags.R;
+import fr.voltanite.activity.R;
 import fr.voltanite.utils.Utils;
 
 public class AddQRcode extends Activity {
-	String qrcode;
+	private static String QRCODE;
+	private static String NAME = "Node name stub";
+	private static String DESC = "Node desc stub";
+	private static int FATHER = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_qrcode);
         Intent intent = getIntent();
-        qrcode = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        QRCODE = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         findViewById(R.id.node_creation_parent_search).setOnClickListener(rechercheparent);
         findViewById(R.id.node_creation_metadata_add).setOnClickListener(meta);
         findViewById(R.id.node_creation_validate).setOnClickListener(validation);
         
         EditText paramParent = null;
         paramParent = (EditText)findViewById(R.id.node_creation_name_input);
-        if(qrcode != null)
-        	paramParent.setHint(qrcode);
+        if(QRCODE != null)
+        	paramParent.setHint(QRCODE);
         
     }
 
@@ -38,6 +41,14 @@ public class AddQRcode extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_add_qrcode, menu);
         return true;
+    }
+    
+    public void onResume()
+    {
+    	super.onResume();
+    	NAME = "Node name stub";
+    	DESC = "Node desc stub";
+    	FATHER = 0;
     }
     
     public final OnClickListener rechercheparent = new OnClickListener() {
@@ -64,9 +75,23 @@ public class AddQRcode extends Activity {
 					TextView tnom = (TextView) findViewById(R.id.node_creation_name_input);
 					String nom = tnom.getText().toString();
 					TextView tpar = (TextView) findViewById(R.id.node_creation_parent_input);					
-					int parent = Integer.parseInt(tpar.getText().toString());
-					//String desc = findViewById(R.id.saisie_desc).toString();
-					Noeud noeud = new Noeud(nom, qrcode, parent, 0);
+					String parent = tpar.getText().toString();
+					TextView tdesc = (TextView) findViewById(R.id.node_creation_desc_input);
+					String desc = tdesc.getText().toString();
+					if (!nom.equals(""))					{
+						NAME = nom;
+					}
+					if (!desc.equals(""))
+					{
+						DESC = desc;
+					}
+					if (!parent.equals(""))
+					{
+						int fath = Integer.parseInt(parent);
+						FATHER = fath;
+					}
+					
+					Noeud noeud = new Noeud(NAME, QRCODE, DESC, FATHER, 0);
 					NoeudsBDD nbdd = new NoeudsBDD(getBaseContext());
 					nbdd.open();
 					try {

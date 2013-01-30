@@ -19,12 +19,12 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import fr.voltanite.synchrotags.R;
+import fr.voltanite.activity.R;
 
 
 
 public class MainActivity extends Activity {
-	public final static String EXTRA_MESSAGE = "null";
+	public final static String EXTRA_MESSAGE = "qrcode_stub";
 	private static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

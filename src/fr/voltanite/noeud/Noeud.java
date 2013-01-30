@@ -5,6 +5,7 @@ public class Noeud {
 	
 	private String nom;
 	private String contenuQrcode;
+	private String description;
 	// l'id du père
 	private int pere;
 	// l'int qu'on recherchera dans la table des metadatas
@@ -16,10 +17,11 @@ public class Noeud {
 	 */
 	private int id;
 	
-	public Noeud(String nom, String contenuQrcode, int pere, int meta) {
+	public Noeud(String nom, String contenuQrcode, String desc, int pere, int meta) {
 		super();
 		this.nom = nom;
 		this.contenuQrcode = contenuQrcode;
+		this.description = desc;
 		this.pere = pere;
 		this.meta = meta;
 		this.id = 0;
@@ -32,10 +34,15 @@ public class Noeud {
 		super();
 		this.nom = "";
 		this.contenuQrcode = "";
+		this.description = "";
 		this.pere = 0;
 		this.meta = 0;
 		this.id = 0;
 	}
+
+	
+
+	
 
 
 
@@ -61,12 +68,17 @@ public class Noeud {
 	public String toString() {
 		// TODO Auto-generated method stub
 		String ret = "";
-		ret += "Noeud : " + nom + ", QRCode : " + contenuQrcode + ", fils de " + pere + ", MetaData : " + meta;
+		ret += "Noeud : id " + id + ", " + nom + ", QRCode : " + contenuQrcode + ", fils de " + pere + ", MetaData : " + meta;
 		return ret;
 	}
 
 
-
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getNom() {
 		return nom;
 	}

@@ -12,7 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
-import fr.voltanite.synchrotags.R;
+import fr.voltanite.activity.R;
 import fr.voltanite.utils.Utils;
 
 public class NodeDisplayActivity extends Activity {
@@ -77,11 +77,6 @@ public class NodeDisplayActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }*/
 		return super.onOptionsItemSelected(item);
 	}
 

@@ -1,6 +1,5 @@
 package fr.voltanite.noeud;
 
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,6 +11,7 @@ public class BaseSQLite extends SQLiteOpenHelper {
 	private static final String COL_CLE = DatabaseConstants.COL_CLE;
 	private static final String COL_NOM = DatabaseConstants.COL_NOM;
 	private static final String COL_QRCODE = DatabaseConstants.COL_QRCODE;
+	private static final String COL_DESCRIPTION = DatabaseConstants.COL_DESCRIPTION;
 	private static final String COL_PERE = DatabaseConstants.COL_PERE;
 	private static final String COL_META = DatabaseConstants.COL_META;
 	
@@ -24,6 +24,7 @@ public class BaseSQLite extends SQLiteOpenHelper {
 			+ COL_CLE + " INTEGER PRIMARY KEY AUTOINCREMENT , "
 			+ COL_NOM + " TEXT NOT NULL , "
 			+ COL_QRCODE + " TEXT NOT NULL , "
+			+ COL_DESCRIPTION + " TEXT, "
 			+ COL_PERE + " NUM , "
 			+ COL_META + " NUM "
 			+ ");";
@@ -38,9 +39,10 @@ public class BaseSQLite extends SQLiteOpenHelper {
 	public static final String CREATE_RACINE = "INSERT INTO TABLE_NOEUDS ("+COL_CLE+", "
 												+ COL_NOM + ", " 
 												+ COL_QRCODE + ", "
+												+ COL_DESCRIPTION + ", "
 												+ COL_PERE + ", " 
 												+ COL_META + ") " 
-												+ " VALUES (0, 'Racine', 'Rien', 0, 0);";
+												+ " VALUES (0, 'Racine', 'Rien', 'La racine', 0, 0);";
 
 	public BaseSQLite (Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);

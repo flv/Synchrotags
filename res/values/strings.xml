@@ -18,5 +18,5 @@
 	<string name="node_display_welcome">Contenu de la base de données</string>
 	<string name="main_activity_db_display">Afficher les noeuds de la base de données</string>
 	<string name="main_activity_scan_button">Scan anything</string>
-	
+	<string name="title_activity_node_display">Affichage des noeuds</string>
 </resources>
