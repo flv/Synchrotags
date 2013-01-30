@@ -12,6 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
+import fr.voltanite.synchrotags.R;
 import fr.voltanite.utils.Utils;
 
 public class NodeDisplayActivity extends Activity {

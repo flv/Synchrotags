@@ -12,6 +12,7 @@ import android.widget.TextView;
 import fr.voltanite.noeud.NoMatchableNodeException;
 import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
+import fr.voltanite.synchrotags.R;
 import fr.voltanite.utils.Utils;
 
 public class AddQRcode extends Activity {

@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import fr.voltanite.synchrotags.R;
 
 public class ScrollableGeneric extends Activity {
 	

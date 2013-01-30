@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import fr.voltanite.synchrotags.R;
+
 public class CaptureQrCode extends Activity {
 
     @Override
