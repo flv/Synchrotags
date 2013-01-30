@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+     android:background="#000000" >
+
+    <EditText
+        android:id="@+id/saisie_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="Saisir le nom" >
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/saisie_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_nom"
+        android:layout_below="@+id/saisie_nom"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="Saisir le description" />
+
+    <EditText
+        android:id="@+id/saisie_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_desc"
+        android:layout_below="@+id/saisie_desc"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="Saisir le parent" 
+    />
+
+    <Button
+        android:id="@+id/recherche_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_parent"
+        android:layout_below="@+id/saisie_parent"
+        android:layout_marginTop="25dp"
+        android:text="Rechercher un parent" />
+    
+    <Button
+        android:id="@+id/add_meta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/recherche_parent"
+        android:layout_below="@+id/recherche_parent"
+        android:layout_marginTop="25dp"
+        android:text="Ajout des métadonnées" />
+
+    <Button
+        android:id="@+id/validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_meta"
+        android:layout_below="@+id/add_meta"
+        android:layout_marginTop="25dp"
+        android:text="Valider" />
+
+</RelativeLayout>

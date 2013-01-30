@@ -1,18 +1,9 @@
-package fr.voltanite.synchrotags;
+package fr.voltanite.activity;
 
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +11,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +40,7 @@ public class MainActivity extends Activity {
 
 	private final Button.OnClickListener showbdd = new Button.OnClickListener() {
 		public void onClick(View v) {
-			Intent intent = new Intent(getBaseContext(), ScrollableGeneric.class);
+			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
 			startActivity(intent);
 		}
 	};
