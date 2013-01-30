@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		findViewById(R.id.qr_code_scanner).setOnClickListener(scanAnything);
 		findViewById(R.id.show_base).setOnClickListener(showbdd);
+		findViewById(R.id.continuous_scan).setOnClickListener(continuousQrcode);
 	}
 
 	@Override
@@ -43,6 +44,14 @@ public class MainActivity extends Activity {
 	private final Button.OnClickListener showbdd = new Button.OnClickListener() {
 		public void onClick(View v) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
+			intent.putExtra(EXTRA_MESSAGE, "/");
+			startActivity(intent);			
+		}
+	};
+	
+	private final Button.OnClickListener continuousQrcode = new Button.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(getBaseContext(), AddContinuousQRcode.class);
 			startActivity(intent);
 		}
 	};

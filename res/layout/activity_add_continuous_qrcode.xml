@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddContiniousQRcode" >
+
+    <EditText
+        android:id="@+id/saisie_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/node_creation_name_input">    </EditText>
+
+    <EditText
+        android:id="@+id/saisie_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_nom"
+        android:layout_below="@+id/saisie_nom"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="@string/node_creation_desc_input" ></EditText>
+    <TextView
+        android:id="@+id/saisie_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_desc"
+        android:layout_below="@+id/saisie_desc"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/node_creation_parent_input"></TextView>
+    <Button
+        android:id="@+id/validation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/add_meta"
+        android:layout_below="@+id/saisie_parent"
+        android:layout_marginTop="106dp"
+        android:text="Valider" />
+
+    <Button
+        android:id="@+id/add_meta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/saisie_parent"
+        android:layout_centerVertical="true"
+        android:text="Ajout des métadonnées" />
+
+</RelativeLayout>
