@@ -3,17 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/nom_appli"
-        android:textSize="30px"
-        tools:context=".MainActivity" />
-
     <Button
         android:id="@+id/show_base"
         android:layout_width="fill_parent"
@@ -21,8 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"
-        android:text="Affichage de la base de données" />
-
+        android:text="@string/main_activity_db_display" />
     <Button
         android:id="@+id/qr_code_scanner"
         android:layout_width="fill_parent"
@@ -30,6 +18,17 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/show_base"
         android:layout_marginTop="50dp"
-        android:text="scan_anything" />
+        android:text="@string/main_activity_scan_button" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="74dp"
+        android:text="@string/nom_appli"
+        android:textSize="30sp"
+        tools:context=".MainActivity" />
 
 </RelativeLayout>

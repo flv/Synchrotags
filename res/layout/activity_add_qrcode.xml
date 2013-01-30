@@ -1,67 +1,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/node_creation_main_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-     android:background="#000000" >
+    android:layout_height="match_parent"
+    android:background="#000000" >
 
     <EditText
-        android:id="@+id/saisie_nom"
+        android:id="@+id/node_creation_name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:text="Saisir le nom" >
+        android:hint="@string/node_creation_name_input" >
     </EditText>
 
-
     <EditText
-        android:id="@+id/saisie_desc"
+        android:id="@+id/node_creation_desc_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/saisie_nom"
-        android:layout_below="@+id/saisie_nom"
+        android:layout_alignLeft="@+id/node_creation_name_input"
+        android:layout_below="@+id/node_creation_name_input"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:text="Saisir le description" />
+        android:hint="@string/node_creation_desc_input" />
 
     <EditText
-        android:id="@+id/saisie_parent"
+        android:id="@+id/node_creation_parent_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/saisie_desc"
-        android:layout_below="@+id/saisie_desc"
+        android:layout_alignLeft="@+id/node_creation_desc_input"
+        android:layout_below="@+id/node_creation_desc_input"
         android:layout_marginTop="25dp"
         android:ems="10"
-        android:text="Saisir le parent" 
-    />
+        android:hint="@string/node_creation_parent_input" />
 
     <Button
-        android:id="@+id/recherche_parent"
+        android:id="@+id/node_creation_parent_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/saisie_parent"
-        android:layout_below="@+id/saisie_parent"
+        android:layout_alignLeft="@+id/node_creation_parent_input"
+        android:layout_below="@+id/node_creation_parent_input"
         android:layout_marginTop="25dp"
-        android:text="Rechercher un parent" />
-    
-    <Button
-        android:id="@+id/add_meta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/recherche_parent"
-        android:layout_below="@+id/recherche_parent"
-        android:layout_marginTop="25dp"
-        android:text="Ajout des métadonnées" />
+        android:text="@string/node_creation_parent_search" />
 
     <Button
-        android:id="@+id/validation"
+        android:id="@+id/node_creation_metadata_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/add_meta"
-        android:layout_below="@+id/add_meta"
+        android:layout_alignLeft="@+id/node_creation_parent_search"
+        android:layout_below="@+id/node_creation_parent_search"
         android:layout_marginTop="25dp"
-        android:text="Valider" />
+        android:text="@string/node_creation_metadata_add" />
+
+    <Button
+        android:id="@+id/node_creation_validate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/node_creation_metadata_add"
+        android:layout_below="@+id/node_creation_metadata_add"
+        android:layout_marginTop="25dp"
+        android:text="@string/node_creation_validate" />
 
 </RelativeLayout>

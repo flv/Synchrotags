@@ -26,7 +26,7 @@ public class NodeDisplayActivity extends Activity {
 		{
 			setContentView(R.layout.activity_display_noeuds);
 
-			View linearLayout = findViewById(R.id.received_message_layout);
+			View linearLayout = findViewById(R.id.database_nodes_layout);
 
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();

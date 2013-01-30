@@ -23,12 +23,12 @@ public class AddQRcode extends Activity {
         setContentView(R.layout.activity_add_qrcode);
         Intent intent = getIntent();
         qrcode = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        findViewById(R.id.recherche_parent).setOnClickListener(rechercheparent);
-        findViewById(R.id.add_meta).setOnClickListener(meta);
-        findViewById(R.id.validation).setOnClickListener(validation);
+        findViewById(R.id.node_creation_parent_search).setOnClickListener(rechercheparent);
+        findViewById(R.id.node_creation_metadata_add).setOnClickListener(meta);
+        findViewById(R.id.node_creation_validate).setOnClickListener(validation);
         
         EditText paramParent = null;
-        paramParent = (EditText)findViewById(R.id.saisie_nom);
+        paramParent = (EditText)findViewById(R.id.node_creation_name_input);
         if(qrcode != null)
         	paramParent.setHint(qrcode);
         
@@ -61,9 +61,9 @@ public class AddQRcode extends Activity {
 				public void onClick(View v) {
 					Intent intent = new Intent(getBaseContext(), MainActivity.class);
 					
-					TextView tnom = (TextView) findViewById(R.id.saisie_nom);
+					TextView tnom = (TextView) findViewById(R.id.node_creation_name_input);
 					String nom = tnom.getText().toString();
-					TextView tpar = (TextView) findViewById(R.id.saisie_parent);					
+					TextView tpar = (TextView) findViewById(R.id.node_creation_parent_input);					
 					int parent = Integer.parseInt(tpar.getText().toString());
 					//String desc = findViewById(R.id.saisie_desc).toString();
 					Noeud noeud = new Noeud(nom, qrcode, parent, 0);

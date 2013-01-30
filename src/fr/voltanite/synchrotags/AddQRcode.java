@@ -17,12 +17,12 @@ public class AddQRcode extends Activity {
         setContentView(R.layout.activity_add_qrcode);
         Intent intent = getIntent();
         String qrcode = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        findViewById(R.id.recherche_parent).setOnClickListener(rechercheparent);
-        findViewById(R.id.add_meta).setOnClickListener(meta);
-        findViewById(R.id.validation).setOnClickListener(validation);
+        findViewById(R.id.node_creation_parent_search).setOnClickListener(rechercheparent);
+        findViewById(R.id.node_creation_metadata_add).setOnClickListener(meta);
+        findViewById(R.id.node_creation_validate).setOnClickListener(validation);
         
         EditText paramParent = null;
-        paramParent = (EditText)findViewById(R.id.saisie_nom);
+        paramParent = (EditText)findViewById(R.id.node_creation_name_input);
         if(qrcode != null)
         	paramParent.setHint(qrcode);
         

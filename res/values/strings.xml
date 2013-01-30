@@ -9,5 +9,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_qrcode">AddQRcode</string>
     <string name="title_activity_capture_qr_code">CaptureQrCode</string>
-
+	<string name="node_creation_name_input">Saisir un nom</string>
+	<string name="node_creation_desc_input">Saisir la description</string>
+	<string name="node_creation_parent_input">Saisir le nom du parent</string>
+	<string name="node_creation_parent_search">Rechercher un parent</string>
+	<string name="node_creation_metadata_add">Ajouter des métadonnées</string>
+	<string name="node_creation_validate">Valider la création du noeud</string>
+	<string name="node_display_welcome">Contenu de la base de données</string>
+	<string name="main_activity_db_display">Afficher les noeuds de la base de données</string>
+	<string name="main_activity_scan_button">Scan anything</string>
+	
 </resources>
