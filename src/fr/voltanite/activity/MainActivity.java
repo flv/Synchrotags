@@ -12,14 +12,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import fr.voltanite.activity.R;
 import fr.voltanite.utils.Utils;
 
 
@@ -31,13 +33,13 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		findViewById(R.id.qr_code_scanner).setOnClickListener(scanAnything);
-		findViewById(R.id.show_base).setOnClickListener(showbdd);
-		findViewById(R.id.continuous_scan).setOnClickListener(continuousQrcode);
-		findViewById(R.id.testPHP).setOnClickListener(testPHP);
-		findViewById(R.id.testLive).setOnClickListener(testLive);
-		findViewById(R.id.testJEE).setOnClickListener(testJEE);
-		findViewById(R.id.testPHP2).setOnClickListener(testPHP2);
+		findViewById(R.id.qr_code_scanner).setOnTouchListener((OnTouchListener) scanAnything);
+		findViewById(R.id.show_base).setOnTouchListener((OnTouchListener)showbdd);
+		findViewById(R.id.continuous_scan).setOnTouchListener((OnTouchListener)continuousQrcode);
+		findViewById(R.id.testPHP).setOnTouchListener((OnTouchListener)testPHP);
+		findViewById(R.id.testLive).setOnTouchListener((OnTouchListener)testLive);
+		findViewById(R.id.testJEE).setOnTouchListener((OnTouchListener)testJEE);
+		findViewById(R.id.testPHP2).setOnTouchListener((OnTouchListener)testPHP2);
 	}
 
 	@Override
@@ -46,45 +48,58 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	private final Button.OnClickListener showbdd = new Button.OnClickListener() {
-		public void onClick(View v) {
+	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
 			intent.putExtra(EXTRA_MESSAGE, "");
 			startActivity(intent);			
+			return false;
 		}
+
+	};
+	
+	private final TextView.OnTouchListener testPHP = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
+			jsonTest();		
+			return false;
+		}
+
 	};
 
-	private final Button.OnClickListener testPHP = new Button.OnClickListener() {
-		public void onClick(View v) {
-			jsonTest();
+	private final TextView.OnTouchListener testJEE = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
+			Utils.popDebug(getBaseContext(), "Not yet.");	
+			return false;
 		}
+
 	};
 	
-	private final Button.OnClickListener testJEE = new Button.OnClickListener() {
-		public void onClick(View v) {
-			Utils.popDebug(getBaseContext(), "Not yet.");
-		}
-	};
-	
-	private final Button.OnClickListener testPHP2 = new Button.OnClickListener() {
-		public void onClick(View v) {
+	private final TextView.OnTouchListener testPHP2 = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
 			Utils.popDebug(getBaseContext(), "NOOOOOOOOOOOOO");
+			return false;
 		}
-	};
 
-	private final Button.OnClickListener testLive = new Button.OnClickListener() {
-		public void onClick(View v) {
+	};
+	
+	private final TextView.OnTouchListener testLive = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
 			IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
-			integrator.initiateScan();		
+			integrator.initiateScan();
+			return false;
 		}
+
 	};
 
-	private final Button.OnClickListener continuousQrcode = new Button.OnClickListener() {
-		public void onClick(View v) {
+	private final TextView.OnTouchListener continuousQrcode = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), AddContinuousQRcode.class);
 			startActivity(intent);
+			return false;
 		}
+
 	};
+
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
@@ -97,16 +112,17 @@ public class MainActivity extends Activity {
 		// else continue with any other code you need in the method
 	}
 
-	private final Button.OnClickListener scanAnything = new Button.OnClickListener() {
-		public void onClick(View v) {
-			//IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
-			//integrator.initiateScan();
+	private final TextView.OnTouchListener scanAnything = new TextView.OnTouchListener() {
+		public boolean onTouch(View v, MotionEvent event) {
 			Intent addqrcode = new Intent(getBaseContext(), AddQRcode.class);
 			String message = "test qrcode";//scanResult.getContents();
 			addqrcode.putExtra(EXTRA_MESSAGE, message);
-			startActivity(addqrcode);
-		}      
-	};   
+			startActivity(addqrcode);  
+			return false;
+		}
+
+	};
+
 
 	private void jsonTest (){
 		JSONObject jtest = new JSONObject();
