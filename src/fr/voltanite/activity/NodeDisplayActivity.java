@@ -1,6 +1,7 @@
 package fr.voltanite.activity;
 
 import java.util.ArrayList;
+import java.util.Currency;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,13 +22,20 @@ import fr.voltanite.utils.Utils;
 
 public class NodeDisplayActivity extends Activity {
 
-	private String path= "";
+	private static String path= "/";
 	private String nom_parent;
-	private Noeud current_node;
+	private static Noeud noeud;
+	//private static Noeud current_node;
 	String qrcode;
-	@Override
+	
+	
+	public void setPath(String npath)
+	{
+		path = npath;
+	}
+	
 	public void onCreate(Bundle savedInstanceState) {
-		 
+
 		super.onCreate(savedInstanceState);    
 
 		try 
@@ -35,16 +43,23 @@ public class NodeDisplayActivity extends Activity {
 			setContentView(R.layout.activity_display_noeuds);
 
 			View linearLayout = findViewById(R.id.database_nodes_layout);
+			
+			Intent intent = getIntent();
+			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+			//Utils.popDebug(getBaseContext(), path);
+			TextView t = (TextView)findViewById(R.id.path_pere); 
+			t.setHint(path);
 
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
-			
+
 			int nbLignes = nbdd.getNbNoeuds();
 			ArrayList<Button> buttons = new ArrayList<Button>();
-
+			Noeud current_node;
 			for (int i = 0; i < nbLignes; i ++)
 			{
 				current_node= nbdd.getNoeudById(i);
+				final String myPath = current_node.getNom();
 				buttons.add(new Button(this));
 				Button btmp = buttons.get(buttons.size() - 1);
 				btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
@@ -53,10 +68,10 @@ public class NodeDisplayActivity extends Activity {
 						LayoutParams.FILL_PARENT,
 						LayoutParams.WRAP_CONTENT));
 				btmp.setOnClickListener(new OnClickListener() {
-					
 					public void onClick(View v) {
 						Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-						path = path + current_node.getNom()+"/";
+						path = path + "/" + myPath;
+						intent.removeExtra(MainActivity.EXTRA_MESSAGE);
 						intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
 						startActivity(intent);
 					}
@@ -68,16 +83,6 @@ public class NodeDisplayActivity extends Activity {
 			{
 				((ViewGroup) linearLayout).addView(btn);
 			}
-			
-
-			Intent intent = getIntent();
-			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-			Utils.popDebug(getBaseContext(), path);
-			TextView t=new TextView(this); 
-			t=(TextView)findViewById(R.id.path_pere); 
-			t.setHint(path);
-			
-
 
 		}
 		catch (Exception e)
@@ -86,17 +91,32 @@ public class NodeDisplayActivity extends Activity {
 		}
 
 	}
+	
+	public void onBackPressed()
+	{
+		int lastSlash = path.lastIndexOf("/");
+		Utils.popDebug(getBaseContext(), path);
+		if (path.length() != 0)
+		{
+			path = path.substring(0, lastSlash);
+		}
+		Utils.popDebug(getBaseContext(), path);
+		Intent intent = getIntent();
+		intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+		intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+		super.onBackPressed();
+	}
 
-//	
-//public final OnClickListener show_content = new OnClickListener() {
-//		
-//		public void onClick(View v) {
-//			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-//			path = path + nom_parent+"/";
-//			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-//			startActivity(intent);
-//		}
-//	};
+	//	
+	//public final OnClickListener show_content = new OnClickListener() {
+	//		
+	//		public void onClick(View v) {
+	//			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
+	//			path = path + nom_parent+"/";
+	//			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+	//			startActivity(intent);
+	//		}
+	//	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

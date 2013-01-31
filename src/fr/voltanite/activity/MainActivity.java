@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 	private final Button.OnClickListener showbdd = new Button.OnClickListener() {
 		public void onClick(View v) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-			intent.putExtra(EXTRA_MESSAGE, "/");
+			intent.putExtra(EXTRA_MESSAGE, "");
 			startActivity(intent);			
 		}
 	};
