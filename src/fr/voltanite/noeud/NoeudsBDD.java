@@ -1,5 +1,7 @@
 package fr.voltanite.noeud;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -178,6 +180,54 @@ public class NoeudsBDD {
 		}
 		else {
 			return cursorToNoeud(c);
+		}
+	}
+	
+	public ArrayList<Noeud> getNoeudsByPere(int id) throws NoMatchableNodeException
+	{
+		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_PERE + " = " + id + ";", null);
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("Aucun résultat pour getNoeudsByPere(" + id +")");
+		}
+		else 
+		{
+			ArrayList<Noeud> noeuds = new ArrayList<Noeud>();
+			int nbRes = c.getCount();
+			c.moveToFirst();
+			for (int i = 0; i < nbRes; i ++)
+			{
+				noeuds.add(cursorToNoeud(c));
+				if (c.getCount() != i + 1)
+				{
+					c.move(1);
+				}
+			}
+			return noeuds;			
+		}
+	}
+	
+	public ArrayList<Noeud> getFils(Noeud noeud) throws NoMatchableNodeException
+	{
+		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_PERE + " = " + noeud.getId() + ";", null);
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("Aucun résultat pour getFils()");
+		}
+		else 
+		{
+			ArrayList<Noeud> noeuds = new ArrayList<Noeud>();
+			int nbRes = c.getCount();
+			c.moveToFirst();
+			for (int i = 0; i < nbRes; i ++)
+			{
+				noeuds.add(cursorToNoeud(c));
+				if (c.getCount() != i + 1)
+				{
+					c.move(1);
+				}
+			}
+			return noeuds;			
 		}
 	}
 
