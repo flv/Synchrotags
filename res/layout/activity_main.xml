@@ -8,8 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView1"   
         android:text="@string/main_activity_db_display" />
     <Button
         android:id="@+id/qr_code_scanner"
@@ -17,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/show_base"
-        android:layout_marginTop="50dp"
         android:text="@string/main_activity_scan_button" />
 
     <TextView
@@ -26,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
         android:text="@string/nom_appli"
         android:textSize="30sp"
         tools:context=".MainActivity" />
@@ -37,7 +34,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/show_base"
-        android:layout_marginTop="114dp"
         android:text="continuous qr code" />
 
+    <Button
+        android:id="@+id/testLive"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/continuous_scan"
+        android:text="testLive " />
+
+    <Button
+        android:id="@+id/testPHP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/testLive"
+        android:text="testPHP " />
+    
 </RelativeLayout>

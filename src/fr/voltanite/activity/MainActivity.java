@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
 		findViewById(R.id.qr_code_scanner).setOnClickListener(scanAnything);
 		findViewById(R.id.show_base).setOnClickListener(showbdd);
 		findViewById(R.id.continuous_scan).setOnClickListener(continuousQrcode);
+		findViewById(R.id.testPHP).setOnClickListener(testPHP);
+		findViewById(R.id.testLive).setOnClickListener(testLive);
 	}
 
 	@Override
@@ -48,7 +50,20 @@ public class MainActivity extends Activity {
 			startActivity(intent);			
 		}
 	};
-	
+
+	private final Button.OnClickListener testPHP = new Button.OnClickListener() {
+		public void onClick(View v) {
+			jsonTest();
+		}
+	};
+
+	private final Button.OnClickListener testLive = new Button.OnClickListener() {
+		public void onClick(View v) {
+			IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
+			integrator.initiateScan();		
+		}
+	};
+
 	private final Button.OnClickListener continuousQrcode = new Button.OnClickListener() {
 		public void onClick(View v) {
 			Intent intent = new Intent(getBaseContext(), AddContinuousQRcode.class);
@@ -74,35 +89,38 @@ public class MainActivity extends Activity {
 			Intent addqrcode = new Intent(getBaseContext(), AddQRcode.class);
 			String message = "test qrcode";//scanResult.getContents();
 			addqrcode.putExtra(EXTRA_MESSAGE, message);
-			JSONObject jtest = new JSONObject();
-			try {
-				jtest.put("batman", "truc");
-//				String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
-//				String url = "http://n0m.fr/testandroidjson.php?";
-				String url = "http://192.168.5.71:9000/iut-manager-web/departement.do?action=truc";
-				HttpResponse re = HTTPPoster.doPost(url, jtest);
-				String temp = EntityUtils.toString(re.getEntity());
-				if (temp.compareTo("SUCCESS")==0)
-				{
-					Toast.makeText(getBaseContext(), "Sending complete!", 6000).show();
-				}
-				else
-				{
-					Toast.makeText(getBaseContext(), temp, 6000).show();
-					Toast.makeText(getBaseContext(), jtest.toString(), 6000).show();
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			startActivity(addqrcode);
 		}      
 	};   
+
+	private void jsonTest (){
+		JSONObject jtest = new JSONObject();
+		try {
+			jtest.put("batman", "truc");
+			//		String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
+			//		String url = "http://n0m.fr/testandroidjson.php?";
+			String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
+			HttpResponse re = HTTPPoster.doPost(url, jtest);
+			String temp = EntityUtils.toString(re.getEntity());
+			if (temp.compareTo("SUCCESS")==0)
+			{
+				Toast.makeText(getBaseContext(), "Sending complete!", 6000).show();
+			}
+			else
+			{
+				Toast.makeText(getBaseContext(), temp, 6000).show();
+				Toast.makeText(getBaseContext(), jtest.toString(), 6000).show();
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
