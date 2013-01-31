@@ -22,10 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/node_creation_name_input"
         android:layout_below="@+id/node_creation_name_input"
-        android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="@string/node_creation_desc_input"
-        android:text="" />
+        android:hint="@string/node_creation_desc_input" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/node_creation_parent_input"
@@ -33,11 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/node_creation_desc_input"
         android:layout_below="@+id/node_creation_desc_input"
-        android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="@string/node_creation_parent_input"
-        android:inputType="number"
-        android:text="" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/node_creation_parent_search"
@@ -45,7 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/node_creation_parent_input"
         android:layout_below="@+id/node_creation_parent_input"
-        android:layout_marginTop="25dp"
         android:text="@string/node_creation_parent_search" />
 
     <Button
@@ -54,7 +52,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/node_creation_parent_search"
         android:layout_below="@+id/node_creation_parent_search"
-        android:layout_marginTop="25dp"
         android:text="@string/node_creation_metadata_add" />
 
     <Button
@@ -63,7 +60,17 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/node_creation_metadata_add"
         android:layout_below="@+id/node_creation_metadata_add"
-        android:layout_marginTop="25dp"
         android:text="@string/node_creation_validate" />
+
+    <LinearLayout
+        android:id="@+id/add_qrcode_debug_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/node_creation_validate"
+        android:layout_alignRight="@+id/node_creation_parent_input"
+        android:layout_below="@+id/node_creation_validate"
+        android:orientation="vertical" >
+
+    </LinearLayout>
 
 </RelativeLayout>
