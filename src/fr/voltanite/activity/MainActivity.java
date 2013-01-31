@@ -20,6 +20,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import fr.voltanite.activity.R;
+import fr.voltanite.utils.Utils;
 
 
 
@@ -35,6 +36,8 @@ public class MainActivity extends Activity {
 		findViewById(R.id.continuous_scan).setOnClickListener(continuousQrcode);
 		findViewById(R.id.testPHP).setOnClickListener(testPHP);
 		findViewById(R.id.testLive).setOnClickListener(testLive);
+		findViewById(R.id.testJEE).setOnClickListener(testJEE);
+		findViewById(R.id.testPHP2).setOnClickListener(testPHP2);
 	}
 
 	@Override
@@ -54,6 +57,18 @@ public class MainActivity extends Activity {
 	private final Button.OnClickListener testPHP = new Button.OnClickListener() {
 		public void onClick(View v) {
 			jsonTest();
+		}
+	};
+	
+	private final Button.OnClickListener testJEE = new Button.OnClickListener() {
+		public void onClick(View v) {
+			Utils.popDebug(getBaseContext(), "Not yet.");
+		}
+	};
+	
+	private final Button.OnClickListener testPHP2 = new Button.OnClickListener() {
+		public void onClick(View v) {
+			Utils.popDebug(getBaseContext(), "NOOOOOOOOOOOOO");
 		}
 	};
 
