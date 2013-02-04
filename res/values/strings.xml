@@ -32,8 +32,12 @@
     <string name="meta_create_button">Create metadata</string>
     <string name="title_activity_meta_insert">Insert a metadata</string>
     <string name="title_activity_meta_display">Your metadatas</string>
-    <string name="title_activity_add_continious_qrcode">Ajout d\'un QrCode</string>
-    <string  name="pere_fixe">truc</string>
+    <string name="title_activity_add_continuous_qrcode">Ajout d\'un QrCode</string>
+    <string name="title_activity_add_metadata">Ajout d\'une métadonnée</string>
+    <string name="pere_fixe">truc</string>
+    <string name="meta_creation_type_input">Entrer le type de donnée</string>
+    <string name="meta_creation_content_input">Entrer le contenu de la donnée</string>
+    <string name="meta_creation_validate">Valider</string>
 <!--  TODO : nettoyer les noms inutiles -->
 
 </resources>

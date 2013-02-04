@@ -11,7 +11,7 @@ public class NoeudsBDD {
 
 	private static final int VERSION_BDD = 1;
 	private static final String NOM_BDD = "Synchrotags.db";
-	
+
 	// Champs de la table table_noeuds	
 	private static final String TABLE_NOEUDS = DatabaseConstants.TABLE_NOEUDS;
 	private static final String COL_CLE = DatabaseConstants.COL_CLE;
@@ -64,8 +64,8 @@ public class NoeudsBDD {
 		return bdd;
 	}
 
-	
-	
+
+
 	/* --------------------------------------------------------------
 	 * Methodes d'acces aux données contenues dans la table Noeuds 
 	 *  
@@ -87,25 +87,15 @@ public class NoeudsBDD {
 		values.put(COL_DESCRIPTION, noeud.getDescription());
 		values.put(COL_PERE, noeud.getPere());
 		values.put(COL_META, noeud.getMeta());
-		
+
 		//on insère l'objet dans la BDD via le ContentValues
-		
+
 		return bdd.insertWithOnConflict(TABLE_NOEUDS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
-		
-		/*Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = '" + noeud.getNom() + "' and " +
-				COL_QRCODE + " = '" + noeud.getContenuQrcode() + "';",
-				null);
-		//Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";" , null);
-		//throw new NoMatchableNodeException("" + NUM_COL_CLE);
-		//noeud.setId(c.getInt(NUM_COL_CLE));
-		
-		Ici implémenter la gestion de l'attribut id de l'objet noeud		
-		*/
 	}
 
 	public long updateNoeud(Noeud ancienNoeud, Noeud nouveauNoeud) throws NoMatchableNodeException
 	{
-		
+
 		//Création d'un ContentValues (fonctionne comme une HashMap)
 		ContentValues values = new ContentValues();
 		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
@@ -114,7 +104,7 @@ public class NoeudsBDD {
 		values.put(COL_QRCODE, nouveauNoeud.getContenuQrcode());
 		values.put(COL_DESCRIPTION, nouveauNoeud.getDescription());
 		values.put(COL_META, nouveauNoeud.getMeta());
-		
+
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + ancienNoeud.getId() + ";", null);
 		if (c.getCount() == 0)
 		{
@@ -123,7 +113,7 @@ public class NoeudsBDD {
 		//on insère l'objet dans la BDD via le ContentValues
 		return bdd.update(TABLE_NOEUDS, values, COL_CLE + "=" + ancienNoeud.getId(), null);
 	}
-	
+
 	public void removeNoeud(Noeud noeud) throws NoMatchableNodeException{
 		//Suppression d'un noeud de la BDD
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + noeud.getId() + ";" 
@@ -136,13 +126,13 @@ public class NoeudsBDD {
 		c = bdd.rawQuery("select * from " + TABLE_META + "where " + COL_CLE_META + " = " + noeud.getId() + ";", null);
 		if (c.getCount() != 0)
 		{
-			Metadata[] metas = getMetasById(noeud.getId());
+			ArrayList<Metadata> metas = getMetasById(noeud.getId());
 			for (Metadata meta : metas)
 			{
-					removeMeta(meta);
+				removeMeta(meta);
 			}
 		}
-		
+
 	}
 
 	public Noeud getNoeudById(int id) throws NoMatchableNodeException
@@ -153,12 +143,11 @@ public class NoeudsBDD {
 			throw new NoMatchableNodeException("Aucun résultat pour getNoeudById(" + id +")");
 		}
 		else {
-			Noeud n =  cursorToNoeud(c);
-			n.setId(id);
-			return n;
+			c.moveToFirst();
+			return cursorToNoeud(c);
 		}
 	}
-	
+
 	public Noeud getNoeudByNom(String nom) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_NOM + " = " + nom + ";", null);
@@ -167,10 +156,11 @@ public class NoeudsBDD {
 			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByNom(" + nom +")");
 		}
 		else {
+			c.moveToFirst();
 			return cursorToNoeud(c);
 		}
 	}	
-	
+
 	public Noeud getNoeudByCode(String code) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_QRCODE + " = " +code + ";", null);
@@ -179,10 +169,11 @@ public class NoeudsBDD {
 			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByCode(" + code +")");
 		}
 		else {
+			c.moveToFirst();
 			return cursorToNoeud(c);
 		}
 	}
-	
+
 	public ArrayList<Noeud> getNoeudsByPere(int id) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_PERE + " = " + id + ";", null);
@@ -203,10 +194,11 @@ public class NoeudsBDD {
 					c.move(1);
 				}
 			}
+			c.close();
 			return noeuds;			
 		}
 	}
-	
+
 	public ArrayList<Noeud> getFils(Noeud noeud) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_PERE + " = " + noeud.getId() + ";", null);
@@ -227,46 +219,37 @@ public class NoeudsBDD {
 					c.move(1);
 				}
 			}
+			c.close();
 			return noeuds;			
 		}
 	}
 
 	//Cette méthode permet de convertir un cursor en un noeud
-	public static Noeud cursorToNoeud(Cursor c){
-		//si aucun élément n'a été retourné dans la requête, on renvoie null
-		if (c.getCount() == 0)
-			return null;
-
-		//Sinon on se place sur le premier élément
-		c.moveToFirst();
-		//On créé un livre
+	public static Noeud cursorToNoeud(Cursor c)
+	{
 		Noeud noeud = new Noeud();
-		//on lui affecte toutes les infos grâce aux infos contenues dans le Cursor
 		noeud.setId(c.getInt(NUM_COL_CLE));
 		noeud.setNom(c.getString(NUM_COL_NOM));
 		noeud.setContenuQrcode(c.getString(NUM_COL_QRCODE));
 		noeud.setDescription(c.getString(NUM_COL_DESCRIPTION));
 		noeud.setPere(c.getInt(NUM_COL_PERE));
 		noeud.setMeta(c.getInt(NUM_COL_META));
-		//On ferme le cursor
-		c.close();
-		//On retourne le noeud
 		return noeud;
 	}
-	
+
 	/* ----------------------------------------------------------------
 	 * 
 	 * Méthodes d'accès aux données concernant les métadonnées
 	 * 
 	 * ----------------------------------------------------------------
 	 */
-	
+
 	public int getNbMeta()
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + ";", null);
 		return c.getCount();
 	}
-	
+
 	public void insertMeta(Metadata meta) throws NoMatchableNodeException
 	{
 		System.out.println("Insert de " + meta.toString());
@@ -291,7 +274,7 @@ public class NoeudsBDD {
 			bdd.insertWithOnConflict(TABLE_META, null, values, SQLiteDatabase.CONFLICT_REPLACE);
 		}
 	}
-	
+
 	public void removeMeta(Metadata meta) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + "where " + COL_CLE_META + " = " + meta.getId() +
@@ -306,37 +289,31 @@ public class NoeudsBDD {
 			bdd.delete(TABLE_META, COL_CLE_META + " = " + meta.getId() + " and " + COL_TYPE + " = " + meta.getType() , null);			
 		}
 	}
-	
-	public Metadata[] getMetasById(int id) throws NoMatchableNodeException
+
+	public ArrayList<Metadata> getMetasById(int id) throws NoMatchableNodeException
 	{
-		Metadata[] metas;
+		ArrayList<Metadata> metas = new ArrayList<Metadata>();
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where (" + COL_CLE_META + " = " + id + ");", null);
-		System.out.println("select * from " + TABLE_META + " where (" + COL_CLE_META + " = " + id + ");");
 		int nbRes = c.getCount();
-		
+
 		if (nbRes == 0) {
-			metas = new Metadata[0];
-			System.out.println("nbRes == 0, longueur de metadata : " + metas.length);
 			return metas;			
 		}
-		
-		 metas = new Metadata[c.getCount()];
-		
+
 		c.moveToFirst();
-		
+
 		for (int i = 0; i < nbRes; i ++)
 		{
-			metas[i] = cursorToMeta(c);
+			metas.add(cursorToMeta(c));
 			if (c.getCount() != i + 1)
 			{
 				c.move(1);
 			}
 		}
 		c.close();
-		System.out.println("longueur de metadata : " + metas.length);
 		return metas;
 	}
-	
+
 	/*public Metadata[] getAllMetas()
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + ";", 
@@ -345,7 +322,7 @@ public class NoeudsBDD {
 		{
 			return new Metadata[0];
 		}
-		
+
 		metas = new Metadata[c.getCount()];
 		c.moveToFirst();
 		return cursorToMeta(c);
@@ -358,6 +335,52 @@ public class NoeudsBDD {
 		meta.setType(c.getString(NUM_COL_TYPE));
 		meta.setData(c.getString(NUM_COL_CONTENU));
 		return meta;
+	}
+
+	public ArrayList<Metadata> getMetas() {
+		ArrayList<Metadata> metas = new ArrayList<Metadata>();
+		Cursor c = bdd.rawQuery("select * from " + TABLE_META + ";", null);
+		int nbRes = c.getCount();
+
+		if (nbRes == 0) {
+			return metas;			
+		}
+
+		c.moveToFirst();
+
+		for (int i = 0; i < nbRes; i ++)
+		{
+			metas.add(cursorToMeta(c));
+			if (c.getCount() != i + 1)
+			{
+				c.move(1);
+			}
+		}
+		c.close();
+		return metas;
+	}
+
+	public ArrayList<Noeud> getNoeuds() {
+		ArrayList<Noeud> noeuds = new ArrayList<Noeud>();
+		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";", null);
+		int nbRes = c.getCount();
+		if (nbRes == 0)
+		{
+			return noeuds;
+		}
+
+		c.moveToFirst();
+
+		for (int i = 0; i < nbRes; i++)
+		{
+			noeuds.add(cursorToNoeud(c));
+			if (c.getCount() != i + 1)
+			{
+				c.move(1);
+			}
+		}
+		c.close();
+		return noeuds;
 	}
 
 

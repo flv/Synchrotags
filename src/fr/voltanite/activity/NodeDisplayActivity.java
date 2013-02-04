@@ -62,8 +62,7 @@ public class NodeDisplayActivity extends Activity {
 				final String myPath = current_node.getNom();
 				buttons.add(new Button(this));
 				Button btmp = buttons.get(buttons.size() - 1);
-				btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
-						+ "Id père : " + current_node.getPere());
+				btmp.setText(current_node.toString());
 				btmp.setLayoutParams(new LayoutParams(
 						LayoutParams.FILL_PARENT,
 						LayoutParams.WRAP_CONTENT));
@@ -95,12 +94,10 @@ public class NodeDisplayActivity extends Activity {
 	public void onBackPressed()
 	{
 		int lastSlash = path.lastIndexOf("/");
-		Utils.popDebug(getBaseContext(), path);
 		if (path.length() != 0)
 		{
 			path = path.substring(0, lastSlash);
 		}
-		Utils.popDebug(getBaseContext(), path);
 		Intent intent = getIntent();
 		intent.removeExtra(MainActivity.EXTRA_MESSAGE);
 		intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
