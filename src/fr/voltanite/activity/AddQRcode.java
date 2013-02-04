@@ -61,7 +61,8 @@ public class AddQRcode extends Activity {
 
 		public void onClick(View v) {
 			Intent intent = new Intent(getBaseContext(), AddMetadataActivity.class);
-			startActivity(intent);
+			int requestCode = 1;
+			startActivityForResult(intent, requestCode);
 		}
 	};
 
@@ -120,6 +121,11 @@ public class AddQRcode extends Activity {
 				System.out.println("meta du noeud ajouté : (" + noeud.getMeta() + ")");
 				nbdd.insertNoeud(noeud);
 				System.out.println("noeud ajouté");
+				for(Metadata meta : METAS)
+				{
+					meta.setId(max);
+					nbdd.insertMeta(meta);					
+				}				
 				nbdd.close();
 			} catch (NoMatchableNodeException e) {
 				// TODO Auto-generated catch block
