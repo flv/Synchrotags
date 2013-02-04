@@ -2,15 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/nom_appli"
 
-    <Button
+        android:textSize="30sp"
+        tools:context=".MainActivity" />
+
+    <TextView
         android:id="@+id/show_base"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"   
         android:text="@string/main_activity_db_display" />
-    <Button
+    <TextView
         android:id="@+id/qr_code_scanner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -19,24 +31,14 @@
         android:text="@string/main_activity_scan_button" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/nom_appli"
-        android:textSize="30sp"
-        tools:context=".MainActivity" />
-
-    <Button
         android:id="@+id/continuous_scan"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/show_base"
+        android:layout_below="@+id/qr_code_scanner"
         android:text="continuous qr code" />
 
-    <Button
+    <TextView
         android:id="@+id/testLive"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
         android:layout_below="@+id/continuous_scan"
         android:text="testLive " />
 
-    <Button
+    <TextView
         android:id="@+id/testPHP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -52,7 +54,7 @@
         android:layout_below="@+id/testLive"
         android:text="testPHP " />
     
-    <Button
+    <TextView
         android:id="@+id/testJEE"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -60,7 +62,7 @@
         android:layout_below="@+id/testPHP"
         android:text="testJEE " />
     
-    <Button
+    <TextView
         android:id="@+id/testPHP2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
