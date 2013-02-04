@@ -92,6 +92,7 @@ public class AddQRcode extends Activity {
 					}
 					
 					Noeud noeud = new Noeud(NAME, QRCODE, DESC, FATHER, 0);
+					
 					NoeudsBDD nbdd = new NoeudsBDD(getBaseContext());
 					nbdd.open();
 					try {
