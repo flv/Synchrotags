@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/metadata_add_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/metadata_add_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/meta_creation_type_input" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/metadata_add_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/meta_creation_content_input" />
+
+    <Button
+        android:id="@+id/metadata_add_validate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/meta_creation_validate"
+        android:onClick="onValidate" />
+
+</LinearLayout>
