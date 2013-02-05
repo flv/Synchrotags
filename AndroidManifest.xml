@@ -40,7 +40,11 @@
      
         <activity
             android:name="fr.voltanite.activity.AddContinuousQRcode"
-            android:label="@string/title_activity_add_continious_qrcode" >
+            android:label="@string/title_activity_add_continuous_qrcode" >
+        </activity>
+        <activity
+            android:name="fr.voltanite.activity.AddMetadataActivity"
+            android:label="@string/title_activity_add_metadata" >
         </activity>
     </application>
 

@@ -68,7 +68,7 @@ public class Noeud {
 	public String toString() {
 		// TODO Auto-generated method stub
 		String ret = "";
-		ret += "Noeud : id " + id + ", " + nom + ", QRCode : " + contenuQrcode + ", fils de " + pere + ", MetaData : " + meta;
+		ret += "Noeud : id " + id + ", " + nom + ",\n QRCode : " + contenuQrcode + ", \n " + description +" \n fils de " + pere + ", MetaData : " + meta;
 		return ret;
 	}
 
