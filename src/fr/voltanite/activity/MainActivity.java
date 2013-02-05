@@ -28,6 +28,8 @@ import fr.voltanite.utils.Utils;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "qrcode_stub";
+	public final static String EXTRA_MESSAGE_ID = "";
+	public int id_racine = 0;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,13 @@ public class MainActivity extends Activity {
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-			intent.putExtra(EXTRA_MESSAGE, "");
+			intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
 			startActivity(intent);			
 			return false;
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testPHP = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			jsonTest();		
@@ -73,7 +75,7 @@ public class MainActivity extends Activity {
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testPHP2 = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Utils.popDebug(getBaseContext(), "NOOOOOOOOOOOOO");
@@ -81,7 +83,7 @@ public class MainActivity extends Activity {
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testLive = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
