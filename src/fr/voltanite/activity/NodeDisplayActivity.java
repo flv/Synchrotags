@@ -19,7 +19,7 @@ import fr.voltanite.utils.Utils;
 
 public class NodeDisplayActivity extends Activity {
 
-	private static String path;
+	private static String path = "";
 	private static int id_pere;
 	String qrcode;
 
@@ -37,15 +37,12 @@ public class NodeDisplayActivity extends Activity {
 		try 
 		{
 			setContentView(R.layout.activity_display_noeuds);
-
 			View linearLayout = findViewById(R.id.database_nodes_layout);
-
 			Intent intent = getIntent();
 			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 			TextView t = (TextView)findViewById(R.id.path_pere); 
 			t.setHint(path);
 			id_pere=Integer.parseInt(intent.getStringExtra(MainActivity.EXTRA_MESSAGE_ID));	
-			Utils.popDebug(getBaseContext(), path);
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			int nbLignes = nbdd.getNbNoeuds();
@@ -79,12 +76,11 @@ public class NodeDisplayActivity extends Activity {
 								Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
 								if(path == null)
 								{
-									path = "/"+myPath;
+									path ="/"+myPath;
 								}
 								else{
 									path = path + "/" + myPath;
 								}
-
 								id_pere = current_node.getId();
 								intent.removeExtra(MainActivity.EXTRA_MESSAGE);
 								intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
@@ -137,18 +133,15 @@ public class NodeDisplayActivity extends Activity {
 
 	public void onBackPressed()
 	{
-		/*if (path != "")
-		{
-			Utils.popDebug(getBaseContext(), path+"test");
-			int lastSlash = path.lastIndexOf("/");
+		int lastSlash = path.lastIndexOf('/');
+		if (lastSlash !=0 ){
 			path = path.substring(0, lastSlash);
-			Intent intent = getIntent();
-			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-			Utils.popDebug(getBaseContext(), path+"test2");
-		}*/
+		}
+		Intent intent = getIntent();
+		intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+		intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
+		intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+		intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 		super.onBackPressed();
 	}
 
