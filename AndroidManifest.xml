@@ -19,6 +19,7 @@
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,7 +38,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.voltanite.activity.MainActivity" />
         </activity>
-     
         <activity
             android:name="fr.voltanite.activity.AddContinuousQRcode"
             android:label="@string/title_activity_add_continuous_qrcode" >
@@ -45,6 +45,9 @@
         <activity
             android:name="fr.voltanite.activity.AddMetadataActivity"
             android:label="@string/title_activity_add_metadata" >
+        </activity>
+        <activity
+            android:name="fr.voltanite.activity.NodeDetailedDisplayActivity">
         </activity>
     </application>
 

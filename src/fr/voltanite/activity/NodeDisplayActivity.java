@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -42,7 +44,9 @@ public class NodeDisplayActivity extends Activity {
 			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 			TextView t = (TextView)findViewById(R.id.path_pere); 
 			t.setHint(path);
+			
 			id_pere=Integer.parseInt(intent.getStringExtra(MainActivity.EXTRA_MESSAGE_ID));	
+			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			int nbLignes = nbdd.getNbNoeuds();
@@ -60,17 +64,60 @@ public class NodeDisplayActivity extends Activity {
 					btmp.setLayoutParams(new LayoutParams(
 							LayoutParams.FILL_PARENT,
 							LayoutParams.WRAP_CONTENT));
-					btmp.setOnTouchListener(new OnTouchListener() {
+					btmp.setClickable(true);					
+					// Affichage d'un noeud par maintien du click
+					btmp.setOnLongClickListener(new OnLongClickListener() {
+						
+						public boolean onLongClick(View v) {							
+							System.out.println("entrée dans le onLongClick");
+							Intent intent = new Intent (getBaseContext(), NodeDetailedDisplayActivity.class);
+							intent.putExtra("NodeId", current_node.getId());
+							intent.putExtra("NodeName", current_node.getNom());
+							intent.putExtra("NodeCode", current_node.getContenuQrcode());
+							intent.putExtra("NodeDesc", current_node.getDescription());
+							intent.putExtra("NodeFather", current_node.getPere());
+							intent.putExtra("NodeMeta", current_node.getMeta());
+							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, id_pere);
+							startActivity(intent);
+							return true;
+						}
+					});				
+					
+					
+					// Navigation dans la bdd
+					btmp.setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View arg0) {
+							System.out.println("Entrée dans le onClick");
+							Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
+							if(path == null)
+							{
+								path ="/"+myPath;
+							}
+							else{
+								path = path + "/" + myPath;
+							}
+							id_pere = current_node.getId();
+							intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+							intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
+							intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
+							startActivity(intent);
+						}
+					});
+					
+					/*btmp.setOnTouchListener(new OnTouchListener() {
 						public boolean onTouch(View v, MotionEvent event) {
+							System.out.println("Entrée dans le onTouch");
 							final int action = event.getAction();
 							boolean ret = false;
 
 							switch (action) {
 							case MotionEvent.ACTION_DOWN:
-								ret = true;
+								ret = false;
 								break;
 							case MotionEvent.ACTION_MOVE:
-								ret = true;
+								ret = false;
 								break;
 							case MotionEvent.ACTION_UP:
 								Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
@@ -93,7 +140,7 @@ public class NodeDisplayActivity extends Activity {
 
 							return ret;	
 						}
-					});
+					});*/
 
 				}
 
