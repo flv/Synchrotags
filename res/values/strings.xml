@@ -10,16 +10,16 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_qrcode">Ajout d\'un QrCode</string>
     <string name="title_activity_capture_qr_code">CaptureQrCode</string>
-	<string name="node_creation_name_input">Saisir un nom</string>
-	<string name="node_creation_desc_input">Saisir la description</string>
-	<string name="node_creation_parent_input">Saisir le nom du parent</string>
-	<string name="node_creation_parent_search">Rechercher un parent</string>
-	<string name="node_creation_metadata_add">Ajouter des métadonnées</string>
-	<string name="node_creation_validate">Valider la création du noeud</string>
-	<string name="node_display_welcome">Contenu de la base de données</string>
-	<string name="main_activity_db_display">Afficher les noeuds de la base de données</string>
-	<string name="main_activity_scan_button">Scan anything</string>
-	<string name="title_activity_node_display">Affichage des noeuds</string>
+    <string name="node_creation_name_input">Saisir un nom</string>
+    <string name="node_creation_desc_input">Saisir la description</string>
+    <string name="node_creation_parent_input">Saisir le nom du parent</string>
+    <string name="node_creation_parent_search">Rechercher un parent</string>
+    <string name="node_creation_metadata_add">Ajouter des métadonnées</string>
+    <string name="node_creation_validate">Valider la création du noeud</string>
+    <string name="node_display_welcome">Contenu de la base de données</string>
+    <string name="main_activity_db_display">Afficher les noeuds de la base de données</string>
+    <string name="main_activity_scan_button">Scan anything</string>
+    <string name="title_activity_node_display">Affichage des noeuds</string>
     <string name="edit_message">Entrer un message</string>
     <string name="button_send">Send</string>
     <string name="title_activity_display_message">Affichage de la base de données</string>
@@ -39,9 +39,12 @@
     <string name="meta_creation_content_input">Entrer le contenu de la donnée</string>
     <string name="meta_creation_validate">Valider</string>
     <string name="detailed_node_display_apply_changes_buttons">Appliquer les modifications</string>
-    
+    <string name="title_activity_metadata_modification">MetadataModification</string>
+    <string name="metadata_modification_type">Type de la métadonnée</string>
+    <string name="metadata_modification_content">Contenu de la métadonnée</string>
+
     <!-- Scanner -->
-      <string name="app_picker_name">Applications</string>
+    <string name="app_picker_name">Applications</string>
     <string name="bookmark_picker_name">Bookmarks</string>
     <string name="button_add_calendar">Add to calendar</string>
     <string name="button_add_contact">Add contact</string>
@@ -160,7 +163,7 @@
     <string name="wifi_changing_network">Requesting connection to network\u2026</string>
     <string name="wifi_ssid_label">Network Name</string>
     <string name="wifi_type_label">Type</string>
-    
-<!--  TODO : nettoyer les noms inutiles -->
+
+    <!-- TODO : nettoyer les noms inutiles -->
 
 </resources>

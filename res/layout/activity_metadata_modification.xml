@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/metadata_modification_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MetadataModification" >
+
+    <EditText
+        android:id="@+id/metadata_modification_type_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/metadata_modification_type_rmder"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/metdata_modification_content_rmder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/metadata_modification_type_input"
+        android:text="@string/metadata_modification_content" />
+
+    <TextView
+        android:id="@+id/metadata_modification_type_rmder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/metadata_modification_type" />
+
+    <EditText
+        android:id="@+id/metadata_modification_content_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/metdata_modification_content_rmder"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/metadata_modification_validate_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/metadata_modification_content_input"
+        android:onClick="validate"
+        android:text="@string/meta_creation_validate" />
+
+</RelativeLayout>

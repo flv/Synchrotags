@@ -53,8 +53,9 @@ public class MainActivity extends Activity {
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
+			intent.putExtra(EXTRA_MESSAGE, "/Racine");
 			intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
-			startActivity(intent);			
+			startActivity(intent);
 			return false;
 		}
 
