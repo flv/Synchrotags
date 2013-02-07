@@ -1,5 +1,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Black" />
-    
+    <style name="CustomTheme" parent="android:Theme.Black">
+ <item name="android:layout_width">fill_parent</item>
+ <item name="android:layout_marginTop">20px</item> 
+ <item name="android:textSize">20sp</item>
+ <item name="android:layout_centerHorizontal">true</item>
+ <item name="android:layout_centerVertical">true</item>
+</style>
 </resources>
