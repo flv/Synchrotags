@@ -113,6 +113,29 @@ public class NoeudsBDD {
 		//on insère l'objet dans la BDD via le ContentValues
 		return bdd.update(TABLE_NOEUDS, values, COL_CLE + "=" + ancienNoeud.getId(), null);
 	}
+	
+	public long updateMeta(Metadata ancienneMeta, Metadata nouvelleMeta) throws NoMatchableNodeException
+	{
+		ContentValues values = new ContentValues();
+		
+		values.put(COL_CLE_META, nouvelleMeta.getId());
+		values.put(COL_TYPE, nouvelleMeta.getType());
+		values.put(COL_CONTENU, nouvelleMeta.getData());
+		
+		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " + COL_CLE_META + " = " + ancienneMeta.getId() 
+				+ " and " + COL_TYPE + " = '" + ancienneMeta.getType() + "';"			
+				, null);
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("La métadonnée à mettre à jour n'est pas présente dans la bdd");
+		}
+		
+		return bdd.update(TABLE_META, values, COL_CLE_META + " = " + ancienneMeta.getId() + " and " + COL_TYPE + " = '" + ancienneMeta.getType() + "'" , null);
+	}
+	
+	
+	
+	
 
 	public void removeNoeud(Noeud noeud) throws NoMatchableNodeException{
 		//Suppression d'un noeud de la BDD
@@ -123,7 +146,7 @@ public class NoeudsBDD {
 			throw new NoMatchableNodeException("Le noeud à supprimmer n'est pas présent dans la BD");
 		}
 		bdd.delete(TABLE_NOEUDS, COL_CLE + " = " + noeud.getId(), null);
-		c = bdd.rawQuery("select * from " + TABLE_META + "where " + COL_CLE_META + " = " + noeud.getId() + ";", null);
+		c = bdd.rawQuery("select * from " + TABLE_META + " where " + COL_CLE_META + " = " + noeud.getId() + ";", null);
 		if (c.getCount() != 0)
 		{
 			ArrayList<Metadata> metas = getMetasById(noeud.getId());
@@ -277,8 +300,8 @@ public class NoeudsBDD {
 
 	public void removeMeta(Metadata meta) throws NoMatchableNodeException
 	{
-		Cursor c = bdd.rawQuery("select * from " + TABLE_META + "where " + COL_CLE_META + " = " + meta.getId() +
-				" and " + COL_TYPE + " = " + meta.getType() +";",
+		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " + COL_CLE_META + " = " + meta.getId() +
+				" and " + COL_TYPE + " = '" + meta.getType() +"';",
 				null);
 		if (c.getCount() == 0)
 		{
@@ -286,7 +309,7 @@ public class NoeudsBDD {
 		}	
 		else 
 		{
-			bdd.delete(TABLE_META, COL_CLE_META + " = " + meta.getId() + " and " + COL_TYPE + " = " + meta.getType() , null);			
+			bdd.delete(TABLE_META, COL_CLE_META + " = " + meta.getId() + " and " + COL_TYPE + " = '" + meta.getType() + "'", null);			
 		}
 	}
 
