@@ -12,7 +12,7 @@
     <string name="title_activity_capture_qr_code">CaptureQrCode</string>
     <string name="node_creation_name_input">Saisir un nom</string>
     <string name="node_creation_desc_input">Saisir la description</string>
-    <string name="node_creation_parent_input">Saisir le nom du parent</string>
+    <string name="node_creation_parent_input">Saisir l\'id du parent</string>
     <string name="node_creation_parent_search">Rechercher un parent</string>
     <string name="node_creation_metadata_add">Ajouter des métadonnées</string>
     <string name="node_creation_validate">Valider la création du noeud</string>
@@ -42,7 +42,14 @@
     <string name="title_activity_metadata_modification">MetadataModification</string>
     <string name="metadata_modification_type">Type de la métadonnée</string>
     <string name="metadata_modification_content">Contenu de la métadonnée</string>
-
+	<string name="bddRaz">Remise à zéro de la BDD</string>
+    <string name="continuous_father_scan_prompt">Scannez le père</string>
+    <string name="continuous_father_scan_validate">Valider le père</string>
+    <string name="sonscan_prompt">Scannez un fils</string>
+    <string name="sonscan_son_validate">Ajouter ce fils</string>
+    <string name="sonscan_end_scans">Fin du scan</string>
+    
+    
     <!-- Scanner -->
     <string name="app_picker_name">Applications</string>
     <string name="bookmark_picker_name">Bookmarks</string>

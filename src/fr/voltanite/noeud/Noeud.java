@@ -66,6 +66,12 @@ public class Noeud {
 	 */
 	@Override
 	public String toString() {
+		if (id==0 && nom=="" && contenuQrcode=="" && pere ==0 && meta == 0 && description == "")
+		{
+			return "";
+		}
+		
+		
 		// TODO Auto-generated method stub
 		String ret = "";
 		ret += "Noeud : id " + id + ", " + nom + ", QRCode : " + contenuQrcode + ", \n " + description +" \n fils de " + pere + ", MetaData : " + meta;
