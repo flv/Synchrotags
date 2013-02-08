@@ -42,7 +42,7 @@ public class ParentSearch extends Activity {
 		{
 			setContentView(R.layout.activity_display_noeuds);
 			View pageLayout = findViewById(R.id.database_nodes_layout);
-			RadioGroup parent_radio =(RadioGroup) findViewById(R.id.radio_parent);
+//			RadioGroup parent_radio =(RadioGroup) findViewById(R.id.radio_parent);
 			Intent intent = getIntent();
 			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 			TextView t = (TextView)findViewById(R.id.path_pere); 
@@ -76,7 +76,7 @@ public class ParentSearch extends Activity {
 							Utils.popDebug(getBaseContext(), String.valueOf(sharedI));
 						}
 					});
-					((ViewGroup) parent_radio).addView(but);
+//					((ViewGroup) parent_radio).addView(but);
 					// Affichage d'un noeud par maintien du click
 
 					btmp.setOnLongClickListener(new OnLongClickListener() {

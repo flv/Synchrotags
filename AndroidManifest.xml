@@ -85,6 +85,10 @@
         </activity>
         <activity android:name="fr.voltanite.activity.NodeDetailedDisplayActivity" >
         </activity>
+        <activity 
+            android:name="fr.voltanite.activity.ParentSearch" >
+            android:label="@string/title_activity_parentsearch" >
+        </activity>
 
         <!-- Scanner code -->
 

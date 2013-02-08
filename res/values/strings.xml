@@ -165,5 +165,6 @@
     <string name="wifi_type_label">Type</string>
 
     <!-- TODO : nettoyer les noms inutiles -->
+    <string name="title_activity_parentsearch">Chercher un noeud parent</string>
 
 </resources>
