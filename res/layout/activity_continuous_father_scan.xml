@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddContiniousQRcode" >
+
+    <Button
+        android:id="@+id/validation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/add_meta"
+        android:onClick="createNode"
+        android:text="@string/continuous_father_scan_validate"></Button>"
+
+    <EditText
+        android:id="@+id/conti_fatherscan_saisie_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/conti_fatherscan_saisie_nom"
+        android:ems="10"
+        android:hint="@string/node_creation_desc_input" />
+
+    <TextView
+        android:id="@+id/conti_fatherscan_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/continuous_father_scan_prompt"></TextView>"
+
+    <EditText
+        android:id="@+id/conti_fatherscan_father"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/conti_fatherscan_saisie_desc"
+        android:ems="10"
+        android:hint="@string/node_creation_parent_input"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/add_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/conti_fatherscan_father"
+        android:onClick="createMeta"
+        android:text="@string/node_creation_metadata_add"></Button>"
+
+    <EditText
+        android:id="@+id/conti_fatherscan_saisie_nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/conti_fatherscan_prompt"
+        android:ems="10"
+        android:hint="@string/node_creation_name_input" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

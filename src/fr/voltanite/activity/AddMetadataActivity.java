@@ -29,13 +29,9 @@ public class AddMetadataActivity extends Activity {
 	{
 		//Intent intent = new Intent();
 		TextView ttype = (TextView) findViewById(R.id.metadata_add_type);
-		System.out.println("1");
 		String type = ttype.getText().toString();
-		System.out.println("2");
 		TextView tcont = (TextView) findViewById(R.id.metadata_add_content);					
-		System.out.println("3");
 		String content = tcont.getText().toString();
-		System.out.println("4");
 		if (!type.equals(""))					
 		{
 			TYPE = type;

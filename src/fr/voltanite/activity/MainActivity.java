@@ -15,10 +15,10 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -28,6 +28,8 @@ import fr.voltanite.utils.Utils;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "qrcode_stub";
+	public final static String EXTRA_MESSAGE_ID = "";
+	public static int id_racine = 0;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,17 +49,23 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	
+	public void onBackPressed()
+	{
+		finish();
+	}
 
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-			intent.putExtra(EXTRA_MESSAGE, "");
-			startActivity(intent);			
+			intent.putExtra(EXTRA_MESSAGE, "/Racine");
+			intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
+			startActivity(intent);
 			return false;
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testPHP = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			jsonTest();		
@@ -73,7 +81,7 @@ public class MainActivity extends Activity {
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testPHP2 = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Utils.popDebug(getBaseContext(), "NOOOOOOOOOOOOO");
@@ -81,11 +89,14 @@ public class MainActivity extends Activity {
 		}
 
 	};
-	
+
 	private final TextView.OnTouchListener testLive = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
-			integrator.initiateScan();
+			//IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
+			//integrator.initiateScan();
+			
+			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+			startActivity(intent);
 			return false;
 		}
 
@@ -93,7 +104,8 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener continuousQrcode = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			Intent intent = new Intent(getBaseContext(), AddContinuousQRcode.class);
+			Intent intent = new Intent(getBaseContext(), ContinuousQRCodeFatherScan.class);
+			intent.putExtra("FatherCode", "Father QrCode stub");
 			startActivity(intent);
 			return false;
 		}
