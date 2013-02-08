@@ -29,7 +29,7 @@ import fr.voltanite.utils.Utils;
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "qrcode_stub";
 	public final static String EXTRA_MESSAGE_ID = "";
-	public int id_racine = 0;
+	public static int id_racine = 0;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,11 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	public void onBackPressed()
+	{
+		finish();
 	}
 
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
@@ -99,7 +104,8 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener continuousQrcode = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			Intent intent = new Intent(getBaseContext(), AddContinuousQRcode.class);
+			Intent intent = new Intent(getBaseContext(), ContinuousQRCodeFatherScan.class);
+			intent.putExtra("FatherCode", "Father QrCode stub");
 			startActivity(intent);
 			return false;
 		}

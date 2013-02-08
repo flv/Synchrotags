@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/sonscan_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/sonscan_prompt" />
+
+    <EditText
+        android:id="@+id/sonscan_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sonscan_prompt"
+        android:ems="10"
+        android:hint="@string/node_creation_name_input" />
+
+    <EditText
+        android:id="@+id/sonscan_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sonscan_name"
+        android:ems="10"
+        android:hint="@string/node_creation_desc_input" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/sonscan_father_remainder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/sonscan_metadata_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/sonscan_desc"
+        android:onClick="createMeta"
+        android:text="@string/node_creation_metadata_add" />
+
+    <Button
+        android:id="@+id/sonscan_create_son"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sonscan_metadata_button"
+        android:onClick="createSon"
+        android:text="@string/sonscan_son_validate" />
+
+    <Button
+        android:id="@+id/sonscan_stop_scans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sonscan_create_son"
+        android:onClick="endScans"
+        android:text="@string/sonscan_end_scans" />
+
+</RelativeLayout>

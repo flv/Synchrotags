@@ -76,7 +76,7 @@
                 android:value="fr.voltanite.activity.MainActivity" />
         </activity>
         <activity
-            android:name="fr.voltanite.activity.AddContinuousQRcode"
+            android:name="fr.voltanite.activity.ContinuousQRCodeFatherScan"
             android:label="@string/title_activity_add_continuous_qrcode" >
         </activity>
         <activity
@@ -254,6 +254,15 @@
         </activity>
         <activity 
             android:name="fr.voltanite.activity.AddMetadataToViewedNode">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.AddMetadataContinuousFatherActivity">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.AddMetadataContinuousSonActivity">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.ContinuousQRCodeSonScan">            
         </activity>
     </application>
 

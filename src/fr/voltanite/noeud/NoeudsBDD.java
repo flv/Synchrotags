@@ -155,6 +155,18 @@ public class NoeudsBDD {
 				removeMeta(meta);
 			}
 		}
+		
+		c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_PERE + " = " + noeud.getId() + ";", null);
+		if (c.getCount() != 0)
+		{
+			ArrayList<Noeud> enfants = getNoeudsByPere(noeud.getId());
+			for (Noeud enfant : enfants)
+			{
+				Noeud newEnf = enfant;
+				newEnf.setPere(0);
+				updateNoeud(enfant, newEnf);
+			}
+		}
 
 	}
 

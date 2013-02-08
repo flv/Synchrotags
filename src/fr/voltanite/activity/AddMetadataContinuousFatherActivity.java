@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import fr.voltanite.noeud.Metadata;
 
-public class AddMetadataActivity extends Activity {
+public class AddMetadataContinuousFatherActivity extends Activity {
 	private static Metadata meta;
 	private static String TYPE;
 	private static String CONTENT;
@@ -42,7 +42,7 @@ public class AddMetadataActivity extends Activity {
 		}
 		meta.setType(TYPE);
 		meta.setData(CONTENT);
-		AddQRcode.METAS.add(meta);
+		ContinuousQRCodeFatherScan.METAS.add(meta);
 		//intent.putExtra("newMetaInserted", true);
 		setResult(RESULT_OK);
 		finish();
