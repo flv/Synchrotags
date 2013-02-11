@@ -26,12 +26,6 @@ public class NodeDisplayActivity extends Activity {
 	String qrcode;
 
 
-	public void setPath(String npath)
-	{
-		path = npath;
-	}
-
-
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);    
@@ -42,16 +36,14 @@ public class NodeDisplayActivity extends Activity {
 			View linearLayout = findViewById(R.id.database_nodes_layout);
 			Intent intent = getIntent();
 			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+			Utils.popDebug(this, path);
 			TextView t = (TextView)findViewById(R.id.path_pere); 
 			t.setHint(path);
-			
 			id_pere=Integer.parseInt(intent.getStringExtra(MainActivity.EXTRA_MESSAGE_ID));	
-			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			int nbLignes = nbdd.getNbNoeuds();
 			ArrayList<TextView> txtvwNode = new ArrayList<TextView>();
-			//final Noeud current_node;
 			for (int i = 0; i < nbLignes; i ++)
 			{
 				final Noeud current_node= nbdd.getNoeudById(i);
@@ -62,12 +54,12 @@ public class NodeDisplayActivity extends Activity {
 					btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
 							+ "Id père : " + current_node.getPere());
 					btmp.setLayoutParams(new LayoutParams(
-							LayoutParams.FILL_PARENT,
+							LayoutParams.MATCH_PARENT,
 							LayoutParams.WRAP_CONTENT));
 					btmp.setClickable(true);					
 					// Affichage d'un noeud par maintien du click
 					btmp.setOnLongClickListener(new OnLongClickListener() {
-						
+
 						public boolean onLongClick(View v) {							
 							System.out.println("entrée dans le onLongClick");
 							Intent intent = new Intent (getBaseContext(), NodeDetailedDisplayActivity.class);
@@ -82,11 +74,11 @@ public class NodeDisplayActivity extends Activity {
 							return true;
 						}
 					});				
-					
-					
+
+
 					// Navigation dans la bdd
 					btmp.setOnClickListener(new OnClickListener() {
-						
+
 						public void onClick(View arg0) {
 							System.out.println("Entrée dans le onClick");
 							Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
@@ -105,70 +97,13 @@ public class NodeDisplayActivity extends Activity {
 							startActivity(intent);
 						}
 					});
-					
-					/*btmp.setOnTouchListener(new OnTouchListener() {
-						public boolean onTouch(View v, MotionEvent event) {
-							System.out.println("Entrée dans le onTouch");
-							final int action = event.getAction();
-							boolean ret = false;
-
-							switch (action) {
-							case MotionEvent.ACTION_DOWN:
-								ret = false;
-								break;
-							case MotionEvent.ACTION_MOVE:
-								ret = false;
-								break;
-							case MotionEvent.ACTION_UP:
-								Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-								if(path == null)
-								{
-									path ="/"+myPath;
-								}
-								else{
-									path = path + "/" + myPath;
-								}
-								id_pere = current_node.getId();
-								intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-								intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-								intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-								intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-								startActivity(intent);
-								ret = true;
-								break;
-							}
-
-							return ret;	
-						}
-					});*/
-
-				}
-
-				/*current_node= nbdd.getNoeudById(i);
-				final String myPath = current_node.getNom();
-				buttons.add(new Button(this));
-				Button btmp = buttons.get(buttons.size() - 1);
-				btmp.setText(current_node.toString());
-				btmp.setLayoutParams(new LayoutParams(
-						LayoutParams.FILL_PARENT,
-						LayoutParams.WRAP_CONTENT));
-				btmp.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-						path = path + "/" + myPath;
-						intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-						intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-						startActivity(intent);
-					}
-				});*/
+				}			
 			}
 			nbdd.close();
 			for (TextView btn : txtvwNode)
 			{
 				((ViewGroup) linearLayout).addView(btn);
 			}
-
-
 		}
 
 		catch (Exception e)
@@ -180,15 +115,18 @@ public class NodeDisplayActivity extends Activity {
 
 	public void onBackPressed()
 	{
-		int lastSlash = path.lastIndexOf('/');
-		if (lastSlash !=0 ){
-			path = path.substring(0, lastSlash);
+		if(path != null){
+			int lastSlash = path.lastIndexOf('/');
+			if (lastSlash !=0 ){
+				path = path.substring(0, lastSlash);
+			}
+			else{path = null;}
+			Intent intent = getIntent();
+			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
+			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 		}
-		Intent intent = getIntent();
-		intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-		intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-		intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-		intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 		super.onBackPressed();
 	}
 

@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 		findViewById(R.id.testPHP).setOnTouchListener((OnTouchListener)testPHP);
 		findViewById(R.id.testLive).setOnTouchListener((OnTouchListener)testLive);
 		findViewById(R.id.testJEE).setOnTouchListener((OnTouchListener)testJEE);
-		findViewById(R.id.testPHP2).setOnTouchListener((OnTouchListener)testPHP2);
+		findViewById(R.id.testPHP2).setOnTouchListener((OnTouchListener)Login);
 	}
 
 	@Override
@@ -76,9 +76,10 @@ public class MainActivity extends Activity {
 
 	};
 
-	private final TextView.OnTouchListener testPHP2 = new TextView.OnTouchListener() {
+	private final TextView.OnTouchListener Login = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			Utils.popDebug(getBaseContext(), "NOOOOOOOOOOOOO");
+			Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+			startActivity(intent);
 			return false;
 		}
 

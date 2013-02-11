@@ -5,18 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    
     <TextView
         android:id="@+id/path_pere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/node_display_welcome"
-        android:textSize="20sp" />
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
