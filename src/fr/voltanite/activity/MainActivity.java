@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener testPHP = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			jsonTest();		
+			jsonTest("http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php");		
 			return false;
 		}
 
@@ -96,7 +96,8 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener testJEE = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			Utils.popDebug(getBaseContext(), "Not yet.");	
+			jsonTest("http://h.n0m.fr:9000/alex/");
+//			Utils.popDebug(getBaseContext(), "Not yet.");	
 			return false;
 		}
 
@@ -159,15 +160,16 @@ public class MainActivity extends Activity {
 	};
 
 
-	private void jsonTest (){
+	private void jsonTest (String url){
 		JSONObject jtest = new JSONObject();
 		try {
 			jtest.put(LOGINUSR, LOGINPWD);
 			//jtest.put("current_node", NoeudsBDD.)
 			//		String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
-					String url = "http://h.n0m.fr:9000/alex/";
-			//String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
-			HttpResponse re = HTTPPoster.doPost(url, jtest);
+					String url1 = "http://h.n0m.fr:9000/alex/";
+			//		String url = "http://n0m.fr/testandroidjson.php?";
+//			String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
+			HttpResponse re = HTTPPoster.doPost(url1, jtest);
 			String temp = EntityUtils.toString(re.getEntity());
 			if (temp.compareTo("SUCCESS")==0)
 			{
