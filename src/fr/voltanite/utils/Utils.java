@@ -22,7 +22,7 @@ public abstract class Utils {
 		((ViewGroup) linearLayout).addView(txt1);
 	}
 	
-	public static void emptyDebugLinearLayout(Activity act, Context context, int viewId)
+	public static void emptyLinearLayout(Activity act, Context context, int viewId)
 	{
 		LinearLayout linearLayout = (LinearLayout) act.findViewById(viewId);
 		linearLayout.removeAllViews();

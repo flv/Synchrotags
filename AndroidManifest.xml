@@ -69,14 +69,14 @@
             android:label="@string/title_activity_capture_qr_code" >
         </activity>
         <activity
-            android:name=".NodeDisplayActivity"
+            android:name="fr.voltanite.activity.NodeDisplayActivity"
             android:label="@string/title_activity_node_display" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.voltanite.activity.MainActivity" />
         </activity>
         <activity
-            android:name="fr.voltanite.activity.AddContinuousQRcode"
+            android:name="fr.voltanite.activity.ContinuousQRCodeFatherScan"
             android:label="@string/title_activity_add_continuous_qrcode" >
         </activity>
         <activity
@@ -151,12 +151,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PreferencesActivity"
+            android:name="fr.voltanite.activity.PreferencesActivity"
             android:label="@string/preferences_name"
             android:stateNotNeeded="true" >
         </activity>
         <activity
-            android:name=".encode.EncodeActivity"
+            android:name="fr.voltanite.activity.encode.EncodeActivity"
             android:label="@string/share_name"
             android:stateNotNeeded="true" >
             <intent-filter>
@@ -182,7 +182,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".book.SearchBookContentsActivity"
+            android:name="fr.voltanite.activity.book.SearchBookContentsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/sbc_name"
             android:screenOrientation="landscape"
@@ -194,7 +194,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".share.ShareActivity"
+            android:name="fr.voltanite.activity.share.ShareActivity"
             android:label="@string/share_name"
             android:screenOrientation="user"
             android:stateNotNeeded="true"
@@ -206,7 +206,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".history.HistoryActivity"
+            android:name="fr.voltanite.activity.history.HistoryActivity"
             android:label="@string/history_title"
             android:stateNotNeeded="true" >
             <intent-filter>
@@ -216,7 +216,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".share.BookmarkPickerActivity"
+            android:name="fr.voltanite.activity.share.BookmarkPickerActivity"
             android:label="@string/bookmark_picker_name"
             android:stateNotNeeded="true" >
             <intent-filter>
@@ -226,7 +226,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".share.AppPickerActivity"
+            android:name="fr.voltanite.activity.share.AppPickerActivity"
             android:configChanges="orientation"
             android:label="@string/app_picker_name"
             android:stateNotNeeded="true" >
@@ -237,13 +237,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HelpActivity"
+            android:name="fr.voltanite.activity.HelpActivity"
             android:screenOrientation="user" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="fr.voltanite.activity.MetadataModification"
+            android:label="@string/title_activity_metadata_modification" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.voltanite.activity.NodeDetailedDisplayActivity" />
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.AddMetadataToViewedNode">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.AddMetadataContinuousFatherActivity">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.AddMetadataContinuousSonActivity">            
+        </activity>
+        <activity 
+            android:name="fr.voltanite.activity.ContinuousQRCodeSonScan">            
         </activity>
     </application>
 
