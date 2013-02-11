@@ -85,7 +85,10 @@
         </activity>
         <activity android:name="fr.voltanite.activity.NodeDetailedDisplayActivity" >
         </activity>
-
+ <activity
+            android:name="fr.voltanite.activity.ParentSearch"
+             >
+        </activity>
         <!-- Scanner code -->
 
         <activity
@@ -263,6 +266,9 @@
         </activity>
         <activity 
             android:name="fr.voltanite.activity.ContinuousQRCodeSonScan">            
+        </activity>
+         <activity 
+            android:name="fr.voltanite.activity.LoginActivity">            
         </activity>
     </application>
 

@@ -22,6 +22,7 @@ import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import fr.voltanite.noeud.NoeudsBDD;
 import fr.voltanite.utils.Utils;
 
 
@@ -30,6 +31,9 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "qrcode_stub";
 	public final static String EXTRA_MESSAGE_ID = "";
 	public static int id_racine = 0;
+	public static String LOGINUSR;
+	public static String LOGINPWD;
+	
 	private static final String TAG = MainActivity.class.getSimpleName();
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class MainActivity extends Activity {
 		findViewById(R.id.testLive).setOnTouchListener((OnTouchListener)testLive);
 		findViewById(R.id.testJEE).setOnTouchListener((OnTouchListener)testJEE);
 		findViewById(R.id.testPHP2).setOnTouchListener((OnTouchListener)Login);
+		Utils.popDebug(getBaseContext(), LOGINUSR);
+		Utils.popDebug(getBaseContext(), LOGINPWD);
 	}
 
 	@Override
@@ -84,8 +90,10 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener Login = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
+			if(LOGINUSR == null && LOGINPWD == null){
 			Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-			startActivity(intent);
+			startActivity(intent);}
+			else Utils.popDebug(getBaseContext(), "Syncronizationeuh");
 			return false;
 		}
 
@@ -140,10 +148,11 @@ public class MainActivity extends Activity {
 	private void jsonTest (){
 		JSONObject jtest = new JSONObject();
 		try {
-			jtest.put("batman", "truc");
+			jtest.put(LOGINUSR, LOGINPWD);
+			//jtest.put("current_node", NoeudsBDD.)
 			//		String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
-			//		String url = "http://n0m.fr/testandroidjson.php?";
-			String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
+					String url = "http://h.n0m.fr:9000/alex/";
+			//String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
 			HttpResponse re = HTTPPoster.doPost(url, jtest);
 			String temp = EntityUtils.toString(re.getEntity());
 			if (temp.compareTo("SUCCESS")==0)

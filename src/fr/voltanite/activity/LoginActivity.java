@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -111,6 +112,7 @@ public class LoginActivity extends Activity {
 		// Store values at the time of the login attempt.
 		mEmail = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
+
 		boolean cancel = false;
 		View focusView = null;
 
@@ -225,7 +227,12 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				finish();
+				MainActivity.LOGINUSR = mEmail;
+				MainActivity.LOGINPWD = mPassword;
+				Utils.popDebug(getBaseContext(), mEmail);
+				Utils.popDebug(getBaseContext(), mPassword);
+				Intent intent = new Intent(getBaseContext(), MainActivity.class);
+				startActivity(intent);
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));

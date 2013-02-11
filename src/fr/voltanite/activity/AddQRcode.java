@@ -52,7 +52,7 @@ public class AddQRcode extends Activity {
 	public final OnClickListener rechercheparent = new OnClickListener() {
 
 		public void onClick(View v) {
-			Intent intent = new Intent(getBaseContext(), MainActivity.class);
+			Intent intent = new Intent(getBaseContext(), ParentSearch.class);
 			startActivity(intent);
 		}
 	};
