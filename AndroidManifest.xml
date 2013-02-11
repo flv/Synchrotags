@@ -85,9 +85,7 @@
         </activity>
         <activity android:name="fr.voltanite.activity.NodeDetailedDisplayActivity" >
         </activity>
- <activity
-            android:name="fr.voltanite.activity.ParentSearch"
-             >
+        <activity android:name="fr.voltanite.activity.ParentSearch" >
         </activity>
         <!-- Scanner code -->
 
@@ -255,20 +253,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.voltanite.activity.NodeDetailedDisplayActivity" />
         </activity>
-        <activity 
-            android:name="fr.voltanite.activity.AddMetadataToViewedNode">            
+        <activity android:name="fr.voltanite.activity.AddMetadataToViewedNode" >
         </activity>
-        <activity 
-            android:name="fr.voltanite.activity.AddMetadataContinuousFatherActivity">            
+        <activity android:name="fr.voltanite.activity.AddMetadataContinuousFatherActivity" >
         </activity>
-        <activity 
-            android:name="fr.voltanite.activity.AddMetadataContinuousSonActivity">            
+        <activity android:name="fr.voltanite.activity.AddMetadataContinuousSonActivity" >
         </activity>
-        <activity 
-            android:name="fr.voltanite.activity.ContinuousQRCodeSonScan">            
+        <activity android:name="fr.voltanite.activity.ContinuousQRCodeSonScan" >
         </activity>
-         <activity 
-            android:name="fr.voltanite.activity.LoginActivity">            
+        <activity android:name="fr.voltanite.activity.LoginActivity" >
+        </activity>
+        <activity
+            android:name="fr.voltanite.activity.SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

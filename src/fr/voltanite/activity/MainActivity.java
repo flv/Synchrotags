@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -54,6 +55,19 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menu_settings:
+	    	Utils.popDebug(getBaseContext(), "bidule");
+			Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+			startActivity(intent);
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	public void onBackPressed()
