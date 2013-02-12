@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
 		findViewById(R.id.testLive).setOnTouchListener((OnTouchListener)testLive);
 		findViewById(R.id.testJEE).setOnTouchListener((OnTouchListener)testJEE);
 		findViewById(R.id.testPHP2).setOnTouchListener((OnTouchListener)Login);
+		findViewById(R.id.searchByCode).setOnTouchListener((OnTouchListener)codeSearch);
 		Utils.popDebug(getBaseContext(), LOGINUSR);
 		Utils.popDebug(getBaseContext(), LOGINPWD);
 	}
@@ -65,16 +66,19 @@ public class MainActivity extends Activity {
 		finish();
 	}
 	
-	public void onCodeSearch(View v)
+	private final TextView.OnTouchListener codeSearch = new TextView.OnTouchListener()
 	{
-		System.out.println("OnCodeSearch pressed");
-		Intent intent = new Intent(this, NodeSearchByCode.class);
-		intent.putExtra(EXTRA_MESSAGE, "/Racine");
-		intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
-		intent.putExtra("qrCode", "test qrcode");
-		startActivity(intent);
-	}
-
+		public boolean onTouch(View v, MotionEvent event){
+			Intent intent = new Intent(getBaseContext(), NodeSearchByCode.class);
+			intent.putExtra(EXTRA_MESSAGE, "/Racine");
+			intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
+			intent.putExtra("qrCode", "test qrcode");
+			startActivity(intent);
+			return false;
+		}
+	};
+			
+			
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
 			Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);

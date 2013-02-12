@@ -61,4 +61,13 @@
         android:text="@string/detailed_node_display_apply_changes_buttons" 
         android:onClick="onValidate"/>
 
+    <Button
+        android:id="@+id/detailed_node_display_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/detailed_node_display_apply_changes_button"
+        android:text="@string/detailed_node_display_remove_button" 
+        android:onClick="onRemove"/>
+
 </RelativeLayout>

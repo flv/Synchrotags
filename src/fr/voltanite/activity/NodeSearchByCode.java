@@ -46,7 +46,7 @@ public class NodeSearchByCode extends Activity {
 		fillNodeLayout();
 
 	}
-	
+
 	public void BddRaz(View v)
 	{
 		NoeudsBDD nbdd = new NoeudsBDD(this);
@@ -80,9 +80,15 @@ public class NodeSearchByCode extends Activity {
 			nbdd.open();
 			ArrayList<TextView> txtvwNode = new ArrayList<TextView>();
 			ArrayList<LinearLayout> nodes = new ArrayList<LinearLayout>();
-			
-			ArrayList<Noeud> RequestedNodes = nbdd.getNoeudsByCode(searchedCode);
- 			ArrayList<Noeud> AllNodes = nbdd.getNoeuds();
+			ArrayList<Noeud> RequestedNodes = new ArrayList<Noeud>();
+			try {
+				RequestedNodes = nbdd.getNoeudsByCode(searchedCode);
+			}
+			catch (NoMatchableNodeException e)
+			{
+
+			}
+			ArrayList<Noeud> AllNodes = nbdd.getNoeuds();
 			int maxId = 0;
 			for (Noeud node : AllNodes)
 			{
@@ -91,7 +97,7 @@ public class NodeSearchByCode extends Activity {
 					maxId = node.getId();
 				}
 			}		
-			
+
 			for (int i = 0; i <= maxId; i ++)
 			{
 
@@ -103,11 +109,10 @@ public class NodeSearchByCode extends Activity {
 				final Noeud current_node;
 				try 
 				{
-					System.out.println("Non exception i = " + i );
 					current_node = nbdd.getNoeudById(i);
-					
+
 					if(current_node.getPere() == id_pere){
-						
+
 						final String myPath = current_node.getNom();
 						txtvwNode.add(new TextView(this));
 						TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
@@ -118,7 +123,8 @@ public class NodeSearchByCode extends Activity {
 						btmp.setClickable(true);	
 						if (RequestedNodes.contains(current_node))
 						{
-							btmp.setBackgroundColor(0xFFFFF);
+							System.out.println("Le noeud est parmi les noeuds sélectionnés");
+							btmp.setBackgroundColor(0xEE878AE8);
 						}
 
 						// Affichage d'un noeud par maintien du click
@@ -156,13 +162,14 @@ public class NodeSearchByCode extends Activity {
 								id_pere = current_node.getId();
 								intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
 								intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
+								intent.putExtra("qrCode", searchedCode);
 								startActivity(intent);
 							}
 						});
 
 						nodeLayout.addView(btmp);
 
-						Button btnRm = new Button(this);
+						/*Button btnRm = new Button(this);
 						btnRm.setLayoutParams(new LayoutParams(
 								LayoutParams.WRAP_CONTENT,
 								LayoutParams.WRAP_CONTENT));
@@ -196,7 +203,7 @@ public class NodeSearchByCode extends Activity {
 							}
 						});
 
-						nodeLayout.addView(btnRm);
+						nodeLayout.addView(btnRm);*/
 						nodes.add(nodeLayout);
 
 					}
@@ -206,7 +213,6 @@ public class NodeSearchByCode extends Activity {
 					System.out.println("exception " + e.getMessage() + "    i = " + i );
 				}
 
-//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 			}
 			nbdd.close();
 			for (LinearLayout node : nodes)
@@ -227,21 +233,7 @@ public class NodeSearchByCode extends Activity {
 
 	public void onBackPressed()
 	{
-//<<<<<<< HEAD
-//		if(path != null){
-//			int lastSlash = path.lastIndexOf('/');
-//			if (lastSlash !=0 ){
-//				path = path.substring(0, lastSlash);
-//			}
-//			else{path = null;}
-//			Intent intent = getIntent();
-//			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-//			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-//			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-//			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-//		}
-//		super.onBackPressed();
-//=======
+		
 		System.out.println("backpressed");
 		System.out.println("ExMess : " + getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE));
 		if (getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE).length() == 0)
@@ -282,7 +274,6 @@ public class NodeSearchByCode extends Activity {
 			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 			startActivity(intent);
 		}
-//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 	}
 
 

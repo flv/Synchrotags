@@ -52,7 +52,7 @@ public class Noeud {
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Noeud) {
-			if (((Noeud) o).getPere() == pere && ((Noeud) o).getNom() == nom && ((Noeud) o).getContenuQrcode() == contenuQrcode && ((Noeud) o).getMeta() == meta) {
+			if (((Noeud) o).getId() == this.getId()) {
 				return true;
 			}			
 		}
