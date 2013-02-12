@@ -65,12 +65,6 @@ public class NodeDisplayActivity extends Activity {
 			View linearLayout = findViewById(R.id.database_nodes_layout);
 			Intent intent = getIntent();
 			path = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-//<<<<<<< HEAD
-//			Utils.popDebug(this, path);
-//			TextView t = (TextView)findViewById(R.id.path_pere); 
-//			t.setHint(path);
-//			id_pere=Integer.parseInt(intent.getStringExtra(MainActivity.EXTRA_MESSAGE_ID));	
-//=======
 			if (path.equals("/Racine"))
 			{
 				setPath("");
@@ -80,70 +74,10 @@ public class NodeDisplayActivity extends Activity {
 
 			id_pere=Integer.parseInt(intent.getStringExtra(MainActivity.EXTRA_MESSAGE_ID));	
 
-//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
-			//int nbLignes = nbdd.getNbNoeuds();
 			ArrayList<TextView> txtvwNode = new ArrayList<TextView>();
-//<<<<<<< HEAD
-//			for (int i = 0; i < nbLignes; i ++)
-//			{
-//				final Noeud current_node= nbdd.getNoeudById(i);
-//				if(current_node.getPere() == id_pere){
-//					final String myPath = current_node.getNom();
-//					txtvwNode.add(new TextView(this));
-//					TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
-//					btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
-//							+ "Id père : " + current_node.getPere());
-//					btmp.setLayoutParams(new LayoutParams(
-//							LayoutParams.MATCH_PARENT,
-//							LayoutParams.WRAP_CONTENT));
-//					btmp.setClickable(true);					
-//					// Affichage d'un noeud par maintien du click
-//					btmp.setOnLongClickListener(new OnLongClickListener() {
-//
-//						public boolean onLongClick(View v) {							
-//							System.out.println("entrée dans le onLongClick");
-//							Intent intent = new Intent (getBaseContext(), NodeDetailedDisplayActivity.class);
-//							intent.putExtra("NodeId", current_node.getId());
-//							intent.putExtra("NodeName", current_node.getNom());
-//							intent.putExtra("NodeCode", current_node.getContenuQrcode());
-//							intent.putExtra("NodeDesc", current_node.getDescription());
-//							intent.putExtra("NodeFather", current_node.getPere());
-//							intent.putExtra("NodeMeta", current_node.getMeta());
-//							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, id_pere);
-//							startActivity(intent);
-//							return true;
-//						}
-//					});				
-//
-//
-//					// Navigation dans la bdd
-//					btmp.setOnClickListener(new OnClickListener() {
-//
-//						public void onClick(View arg0) {
-//							System.out.println("Entrée dans le onClick");
-//							Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
-//							if(path == null)
-//							{
-//								path ="/"+myPath;
-//							}
-//							else{
-//								path = path + "/" + myPath;
-//							}
-//							id_pere = current_node.getId();
-//							intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-//							intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-//							intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-//							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-//							startActivity(intent);
-//						}
-//					});
-//				}			
-//=======
 			ArrayList<LinearLayout> nodes = new ArrayList<LinearLayout>();
-			//final Noeud current_node;
-			
 			ArrayList<Noeud> AllNodes = nbdd.getNoeuds();
 			int maxId = 0;
 			for (Noeud node : AllNodes)
@@ -264,7 +198,6 @@ public class NodeDisplayActivity extends Activity {
 					System.out.println("exception " + e.getMessage() + "    i = " + i );
 				}
 
-//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 			}
 			nbdd.close();
 			for (LinearLayout node : nodes)
@@ -285,21 +218,6 @@ public class NodeDisplayActivity extends Activity {
 
 	public void onBackPressed()
 	{
-//<<<<<<< HEAD
-//		if(path != null){
-//			int lastSlash = path.lastIndexOf('/');
-//			if (lastSlash !=0 ){
-//				path = path.substring(0, lastSlash);
-//			}
-//			else{path = null;}
-//			Intent intent = getIntent();
-//			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-//			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-//			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-//			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-//		}
-//		super.onBackPressed();
-//=======
 		System.out.println("backpressed");
 		System.out.println("ExMess : " + getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE));
 		if (getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE).length() == 0)
@@ -340,7 +258,6 @@ public class NodeDisplayActivity extends Activity {
 			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 			startActivity(intent);
 		}
-//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 	}
 
 
@@ -356,6 +273,7 @@ public class NodeDisplayActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	
 
 
 }

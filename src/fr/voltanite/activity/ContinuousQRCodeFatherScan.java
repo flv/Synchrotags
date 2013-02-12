@@ -20,6 +20,7 @@ public class ContinuousQRCodeFatherScan extends Activity {
 	private static String NAME;
 	private static String DESC;
 	private static int FATHER;
+	private static int ParentSearchResult = 26;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -42,6 +43,26 @@ public class ContinuousQRCodeFatherScan extends Activity {
 		Intent intent = new Intent (this, MainActivity.class);
 		startActivity(intent);
 		finish();
+	}
+	
+	public void parentSearch(View v)
+	{
+		Intent intent = new Intent(getBaseContext(), ParentSearch.class);
+		intent.putExtra(MainActivity.EXTRA_MESSAGE, "/Racine");
+		intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(0));
+		startActivityForResult(intent, ParentSearchResult);
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == ParentSearchResult)
+		{
+			if (resultCode == RESULT_OK)
+			{
+				int fathId = intent.getIntExtra("FatherId", 0);
+				((TextView)findViewById(R.id.conti_fatherscan_father)).setText("" + fathId);
+				System.out.println("Parent id reçue dans ContinuousFather " + fathId);
+			}
+		}
 	}
 	
 	public void createNode(View v)

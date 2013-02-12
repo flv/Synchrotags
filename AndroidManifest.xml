@@ -270,6 +270,9 @@
          <activity 
             android:name="fr.voltanite.activity.LoginActivity">            
         </activity>
+        <activity
+            android:name="fr.voltanite.activity.NodeSearchByCode">
+        </activity>
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@
     <string name="title_activity_capture_qr_code">CaptureQrCode</string>
     <string name="node_creation_name_input">Saisir un nom</string>
     <string name="node_creation_desc_input">Saisir la description</string>
-    <string name="node_creation_parent_input">Saisir l\'id du parent</string>
+    <string name="node_creation_parent_input">Rechercher un parent</string>
     <string name="node_creation_parent_search">Rechercher un parent</string>
     <string name="node_creation_metadata_add">Ajouter des métadonnées</string>
     <string name="node_creation_validate">Valider la création du noeud</string>

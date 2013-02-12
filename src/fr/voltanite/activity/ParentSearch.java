@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +23,7 @@ import fr.voltanite.utils.Utils;
 
 public class ParentSearch extends Activity {
 
+	private static int  ParentSearchResult = 26;
 	private static String path = "";
 	private static int id_pere;
 	String qrcode;
@@ -57,6 +59,7 @@ public class ParentSearch extends Activity {
 				final Noeud current_node= nbdd.getNoeudById(i);
 				if(current_node.getPere() == id_pere){
 					final String myPath = current_node.getNom();
+					final int parent_id = current_node.getId();
 					txtvwNode.add(new TextView(this));
 					TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
 					btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
@@ -64,7 +67,7 @@ public class ParentSearch extends Activity {
 					btmp.setLayoutParams(new LayoutParams(
 							LayoutParams.MATCH_PARENT,
 							LayoutParams.WRAP_CONTENT));
-					btmp.setClickable(true);	
+					btmp.setClickable(true);
 					RadioButton but = new RadioButton(this);
 
 					but.setOnClickListener(new OnClickListener() {
@@ -82,15 +85,11 @@ public class ParentSearch extends Activity {
 
 						public boolean onLongClick(View v) {							
 							System.out.println("entrée dans le onLongClick");
-							Intent intent = new Intent (getBaseContext(), NodeDetailedDisplayActivity.class);
-							intent.putExtra("NodeId", current_node.getId());
-							intent.putExtra("NodeName", current_node.getNom());
-							intent.putExtra("NodeCode", current_node.getContenuQrcode());
-							intent.putExtra("NodeDesc", current_node.getDescription());
-							intent.putExtra("NodeFather", current_node.getPere());
-							intent.putExtra("NodeMeta", current_node.getMeta());
-							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, id_pere);
-							startActivity(intent);
+							Intent intent = new Intent (getBaseContext(), AddQRcode.class);
+							setResult(RESULT_OK, intent);
+							intent.putExtra("FatherId", parent_id);
+							System.out.println("Parent id émis par ParentSearch " + parent_id  );
+							finish();
 							return true;
 						}
 					});				
@@ -114,7 +113,7 @@ public class ParentSearch extends Activity {
 							intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
 							intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
 							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-							startActivity(intent);
+							startActivityForResult(intent, ParentSearchResult);
 						}
 					});
 
@@ -167,6 +166,7 @@ public class ParentSearch extends Activity {
 			if (lastSlash !=0 ){
 				path = path.substring(0, lastSlash);
 			}
+			else {path = null;}
 			Intent intent = getIntent();
 			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
 			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
@@ -174,6 +174,24 @@ public class ParentSearch extends Activity {
 			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 		}
 		super.onBackPressed();
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == ParentSearchResult)
+		{
+			if (resultCode == RESULT_OK)
+			{
+				int fathId = intent.getIntExtra("FatherId", 0);
+				Intent resIntent = new Intent(getBaseContext(), AddQRcode.class);
+				setResult(RESULT_OK, intent);
+				int parent_id = 0;
+				resIntent.putExtra("FatherId", intent.getIntExtra("FatherId", 0));
+				System.out.println("Parent id reçue dans ParentSearch " + parent_id);
+				finish();
+			}
+		}
+		
+		// else continue with any other code you need in the method
 	}
 
 

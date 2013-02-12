@@ -29,24 +29,14 @@
         android:layout_alignParentTop="true"
         android:text="@string/continuous_father_scan_prompt"></TextView>"
 
-    <EditText
+    <TextView
         android:id="@+id/conti_fatherscan_father"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/conti_fatherscan_saisie_desc"
         android:ems="10"
-        android:hint="@string/node_creation_parent_input"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/add_meta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/conti_fatherscan_father"
-        android:onClick="createMeta"
-        android:text="@string/node_creation_metadata_add"></Button>"
+        android:hint="@string/node_creation_parent_input"/>"
 
     <EditText
         android:id="@+id/conti_fatherscan_saisie_nom"
@@ -59,5 +49,23 @@
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/conti_fatherscan_fathersearch_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/conti_fatherscan_father"
+        android:onClick="parentSearch"
+        android:text="@string/node_creation_parent_search" />
+
+    <Button
+        android:id="@+id/add_meta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/conti_fatherscan_fathersearch_button"
+        android:onClick="createMeta"
+        android:text="@string/node_creation_metadata_add" />
 
 </RelativeLayout>

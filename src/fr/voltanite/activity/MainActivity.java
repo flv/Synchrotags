@@ -1,5 +1,6 @@
 package fr.voltanite.activity;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
@@ -9,8 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,10 +22,10 @@ import android.view.View.OnTouchListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import fr.voltanite.noeud.BaseSQLite;
 import fr.voltanite.noeud.NoeudsBDD;
 import fr.voltanite.utils.Utils;
 
@@ -60,6 +64,16 @@ public class MainActivity extends Activity {
 	{
 		finish();
 	}
+	
+	public void onCodeSearch(View v)
+	{
+		System.out.println("OnCodeSearch pressed");
+		Intent intent = new Intent(this, NodeSearchByCode.class);
+		intent.putExtra(EXTRA_MESSAGE, "/Racine");
+		intent.putExtra(EXTRA_MESSAGE_ID, String.valueOf(id_racine));
+		intent.putExtra("qrCode", "test qrcode");
+		startActivity(intent);
+	}
 
 	private final TextView.OnTouchListener showbdd = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
@@ -90,10 +104,10 @@ public class MainActivity extends Activity {
 
 	private final TextView.OnTouchListener Login = new TextView.OnTouchListener() {
 		public boolean onTouch(View v, MotionEvent event) {
-			if(LOGINUSR == null && LOGINPWD == null){
+			//if(LOGINUSR == null && LOGINPWD == null){
 			Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-			startActivity(intent);}
-			else Utils.popDebug(getBaseContext(), "Syncronizationeuh");
+			startActivity(intent);
+			//else Utils.popDebug(getBaseContext(), "Syncronizationeuh");
 			return false;
 		}
 
@@ -147,7 +161,10 @@ public class MainActivity extends Activity {
 
 	private void jsonTest (){
 		JSONObject jtest = new JSONObject();
+		//getDatabasePath(Synchrotags);
 		try {
+			File file = new File(Environment.getDataDirectory(), "Synchrotags");
+			
 			jtest.put(LOGINUSR, LOGINPWD);
 			//jtest.put("current_node", NoeudsBDD.)
 			//		String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
