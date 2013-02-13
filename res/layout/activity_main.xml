@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/testPHP2"
-        android:onClick="onCodeSearch"
-        android:text="testQRCodeSearch" />
+        android:text="testQRCodeSearch" 
+         style="@style/CustomTheme" />
     
 </RelativeLayout>

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import fr.voltanite.noeud.NoMatchableNodeException;
 import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
 import fr.voltanite.utils.Utils;
@@ -56,87 +57,130 @@ public class ParentSearch extends Activity {
 			for (int i = 0; i < nbLignes; i ++)
 			{
 				final int sharedI = i;
-				final Noeud current_node= nbdd.getNoeudById(i);
-				if(current_node.getPere() == id_pere){
-					final String myPath = current_node.getNom();
-					final int parent_id = current_node.getId();
-					txtvwNode.add(new TextView(this));
-					TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
-					btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
-							+ "Id père : " + current_node.getPere());
-					btmp.setLayoutParams(new LayoutParams(
-							LayoutParams.MATCH_PARENT,
-							LayoutParams.WRAP_CONTENT));
-					btmp.setClickable(true);
-					RadioButton but = new RadioButton(this);
+//<<<<<<< HEAD
+//				final Noeud current_node= nbdd.getNoeudById(i);
+//				if(current_node.getPere() == id_pere){
+//					final String myPath = current_node.getNom();
+//					final int parent_id = current_node.getId();
+//					txtvwNode.add(new TextView(this));
+//					TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
+//					btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
+//							+ "Id père : " + current_node.getPere());
+//					btmp.setLayoutParams(new LayoutParams(
+//							LayoutParams.MATCH_PARENT,
+//							LayoutParams.WRAP_CONTENT));
+//					btmp.setClickable(true);
+//					RadioButton but = new RadioButton(this);
+//
+//					but.setOnClickListener(new OnClickListener() {
+//						
+//						@Override
+//						public void onClick(View v) {
+//							id_selected = sharedI; 
+//							Utils.popDebug(getBaseContext(), String.valueOf(sharedI));
+//						}
+//					});
+////					((ViewGroup) parent_radio).addView(but);
+//					// Affichage d'un noeud par maintien du click
+//
+//					btmp.setOnLongClickListener(new OnLongClickListener() {
+//
+//						public boolean onLongClick(View v) {							
+//							System.out.println("entrée dans le onLongClick");
+//							Intent intent = new Intent (getBaseContext(), AddQRcode.class);
+//							setResult(RESULT_OK, intent);
+//							intent.putExtra("FatherId", parent_id);
+//							System.out.println("Parent id émis par ParentSearch " + parent_id  );
+//							finish();
+//							return true;
+//						}
+//					});				
+//
+//
+//					// Navigation dans la bdd
+//					btmp.setOnClickListener(new OnClickListener() {
+//
+//						public void onClick(View arg0) {
+//							System.out.println("Entrée dans le onClick");
+//							Intent intent = new Intent(getBaseContext(), ParentSearch.class);
+//							if(path == null)
+//							{
+//								path ="/"+myPath;
+//=======
+				final Noeud current_node;
+				try {
 
-					but.setOnClickListener(new OnClickListener() {
-						
-						@Override
-						public void onClick(View v) {
-							id_selected = sharedI; 
-							Utils.popDebug(getBaseContext(), String.valueOf(sharedI));
-						}
-					});
-//					((ViewGroup) parent_radio).addView(but);
-					// Affichage d'un noeud par maintien du click
+					current_node = nbdd.getNoeudById(i);
+					if(current_node.getPere() == id_pere){
+						final String myPath = current_node.getNom();
+						final int parent_id = current_node.getId();
+						txtvwNode.add(new TextView(this));
+						TextView btmp = txtvwNode.get(txtvwNode.size() - 1);
+						btmp.setText("Noeud : " + current_node.getId() +" " + current_node.getNom() + "\n " 
+								+ "Id père : " + current_node.getPere());
+						btmp.setLayoutParams(new LayoutParams(
+								LayoutParams.MATCH_PARENT,
+								LayoutParams.WRAP_CONTENT));
+						btmp.setClickable(true);
+						RadioButton but = new RadioButton(this);
 
-					btmp.setOnLongClickListener(new OnLongClickListener() {
+						but.setOnClickListener(new OnClickListener() {
 
-						public boolean onLongClick(View v) {							
-							System.out.println("entrée dans le onLongClick");
-							Intent intent = new Intent (getBaseContext(), AddQRcode.class);
-							setResult(RESULT_OK, intent);
-							intent.putExtra("FatherId", parent_id);
-							System.out.println("Parent id émis par ParentSearch " + parent_id  );
-							finish();
-							return true;
-						}
-					});				
-
-
-					// Navigation dans la bdd
-					btmp.setOnClickListener(new OnClickListener() {
-
-						public void onClick(View arg0) {
-							System.out.println("Entrée dans le onClick");
-							Intent intent = new Intent(getBaseContext(), ParentSearch.class);
-							if(path == null)
-							{
-								path ="/"+myPath;
+							@Override
+							public void onClick(View v) {
+								id_selected = sharedI; 
+								Utils.popDebug(getBaseContext(), String.valueOf(sharedI));
+//>>>>>>> 5e1da930b73556830c5e1ae62492bab2f079ffe4
 							}
-							else{
-								path = path + "/" + myPath;
+						});
+						//((ViewGroup) parent_radio).addView(but);
+						// Affichage d'un noeud par maintien du click
+
+						btmp.setOnLongClickListener(new OnLongClickListener() {
+
+							public boolean onLongClick(View v) {							
+								System.out.println("entrée dans le onLongClick");
+								Intent intent = new Intent (getBaseContext(), AddQRcode.class);
+								setResult(RESULT_OK, intent);
+								intent.putExtra("FatherId", parent_id);
+								System.out.println("Parent id émis par ParentSearch " + parent_id  );
+								finish();
+								return true;
 							}
-							id_pere = current_node.getId();
-							intent.removeExtra(MainActivity.EXTRA_MESSAGE);
-							intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
-							intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
-							intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
-							startActivityForResult(intent, ParentSearchResult);
-						}
-					});
+						});				
+
+
+						// Navigation dans la bdd
+						btmp.setOnClickListener(new OnClickListener() {
+
+							public void onClick(View arg0) {
+								System.out.println("Entrée dans le onClick");
+								Intent intent = new Intent(getBaseContext(), ParentSearch.class);
+								if(path == null)
+								{
+									path ="/"+myPath;
+								}
+								else{
+									path = path + "/" + myPath;
+								}
+								id_pere = current_node.getId();
+								intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+								intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
+								intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+								intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
+								startActivityForResult(intent, ParentSearchResult);
+							}
+						});
+
+					}
 
 				}
-
+				catch (NoMatchableNodeException e)
+				{
+					System.out.println("exception " + e.getMessage() + "    i = " + i );
+				}
 			}
-			/*parent_radio.setOnCheckedChangeListener(new OnCheckedChangeListener() 
-			{
-				public void onCheckedChanged(RadioGroup group, int checkedId) {
-					int id_node = ;
-					Utils.popDebug(getBaseContext(), String.valueOf(id_node));
-				}
-			});*/
 			nbdd.close();
-			/*for (TextView btn : txtvwNode)
-			{
-				RadioButton but = new RadioButton(this);				
-				LinearLayout lineLayout = new LinearLayout(this);
-				((ViewGroup) lineLayout).addView(but);
-				((ViewGroup) lineLayout).addView(btn);
-				((ViewGroup) pageLayout).addView(lineLayout);
-				lineLayout.setOrientation(LinearLayout.HORIZONTAL); 
-			}*/
 
 			for(int i=0; i<txtvwNode.size(); i++)
 			{
@@ -175,7 +219,7 @@ public class ParentSearch extends Activity {
 		}
 		super.onBackPressed();
 	}
-	
+
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if (requestCode == ParentSearchResult)
 		{
@@ -190,7 +234,7 @@ public class ParentSearch extends Activity {
 				finish();
 			}
 		}
-		
+
 		// else continue with any other code you need in the method
 	}
 

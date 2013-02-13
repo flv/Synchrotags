@@ -196,4 +196,25 @@ public class NodeDetailedDisplayActivity extends Activity {
 		startActivity(intent);
 		finish();
 	}
+	
+	public void onRemove(View v)
+	{
+		Noeud nodeToRmv = NODE;
+		NoeudsBDD nbdd = new NoeudsBDD(this);
+		nbdd.open();
+		try {
+			nbdd.removeNoeud(nodeToRmv);
+		} catch (NoMatchableNodeException e) {
+			// TODO Auto-generated catch block
+			Utils.popDebug(getBaseContext(), e.getMessage());
+		}
+		finally
+		{
+			nbdd.close();
+			Intent intent = new Intent(this, NodeDisplayActivity.class);
+			intent.putExtra(MainActivity.EXTRA_MESSAGE, "/Racine");
+			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(MainActivity.id_racine));
+			startActivity(intent);
+		}
+	}
 }

@@ -154,7 +154,7 @@ public class NodeDisplayActivity extends Activity {
 
 						nodeLayout.addView(btmp);
 
-						Button btnRm = new Button(this);
+						/*Button btnRm = new Button(this);
 						btnRm.setLayoutParams(new LayoutParams(
 								LayoutParams.WRAP_CONTENT,
 								LayoutParams.WRAP_CONTENT));
@@ -188,7 +188,7 @@ public class NodeDisplayActivity extends Activity {
 							}
 						});
 
-						nodeLayout.addView(btnRm);
+						nodeLayout.addView(btnRm);*/
 						nodes.add(nodeLayout);
 
 					}

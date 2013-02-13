@@ -198,7 +198,7 @@ public class NoeudsBDD {
 
 	public ArrayList<Noeud> getNoeudsByCode(String code) throws NoMatchableNodeException
 	{
-		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_QRCODE + " = " +code + ";", null);
+		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_QRCODE + " = '" +code + "';", null);
 		if (c.getCount() == 0)
 		{
 			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByCode(" + code +")");
