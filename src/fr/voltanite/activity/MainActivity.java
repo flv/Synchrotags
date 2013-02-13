@@ -163,10 +163,14 @@ public class MainActivity extends Activity {
 	private void jsonTest (String url){
 		JSONObject jtest = new JSONObject();
 		try {
-			jtest.put(LOGINUSR, LOGINPWD);
+//			jtest.put(LOGINUSR, LOGINPWD);
+			jtest.put("test", "data");
+			jtest.put("test2", "noeud");
+			jtest.put("test3", "ref");
+			jtest.put("test4", "bip");
 			//jtest.put("current_node", NoeudsBDD.)
 			//		String url = "http://192.168.5.70:9000/iut-manager-web/bidule";
-					String url1 = "http://h.n0m.fr:9000/alex/";
+					String url1 = "http://h.n0m.fr:9000/siteB/sync";
 			//		String url = "http://n0m.fr/testandroidjson.php?";
 //			String url = "http://info-morgane.iut.u-bordeaux1.fr/perso/2012-2013/jmanenti/truc.php";
 			HttpResponse re = HTTPPoster.doPost(url1, jtest);
