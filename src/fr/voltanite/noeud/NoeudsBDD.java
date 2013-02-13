@@ -196,7 +196,7 @@ public class NoeudsBDD {
 		}
 	}	
 
-	public Noeud getNoeudByCode(String code) throws NoMatchableNodeException
+	public ArrayList<Noeud> getNoeudsByCode(String code) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_QRCODE + " = " +code + ";", null);
 		if (c.getCount() == 0)
@@ -204,8 +204,19 @@ public class NoeudsBDD {
 			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByCode(" + code +")");
 		}
 		else {
+			ArrayList<Noeud> noeuds = new ArrayList<Noeud>();
+			int nbRes = c.getCount();
 			c.moveToFirst();
-			return cursorToNoeud(c);
+			for (int i = 0; i < nbRes; i ++)
+			{
+				noeuds.add(cursorToNoeud(c));
+				if (c.getCount() != i + 1)
+				{
+					c.move(1);
+				}
+			}
+			c.close();
+			return noeuds;
 		}
 	}
 

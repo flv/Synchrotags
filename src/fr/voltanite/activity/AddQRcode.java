@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import fr.voltanite.noeud.Metadata;
 import fr.voltanite.noeud.NoMatchableNodeException;
@@ -21,6 +22,7 @@ public class AddQRcode extends Activity {
 	private static String NAME = "Node name stub";
 	private static String DESC = "Node desc stub";
 	private static int FATHER = 0;
+	private static int ParentSearchResult = 26;
 	public static ArrayList<Metadata> METAS = new ArrayList<Metadata>();
 
 
@@ -53,9 +55,25 @@ public class AddQRcode extends Activity {
 
 		public void onClick(View v) {
 			Intent intent = new Intent(getBaseContext(), ParentSearch.class);
-			startActivity(intent);
+			intent.putExtra(MainActivity.EXTRA_MESSAGE, "/Racine");
+			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(0));
+			startActivityForResult(intent, ParentSearchResult);
 		}
 	};
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		if (requestCode == ParentSearchResult)
+		{
+			if (resultCode == RESULT_OK)
+			{
+				int fathId = intent.getIntExtra("FatherId", 0);
+				((Button)findViewById(R.id.node_creation_parent_search)).setText("Pere choisi : " + fathId);
+				((TextView) findViewById(R.id.node_creation_parent_input)).setText("" + fathId);
+			}
+		}
+		
+		// else continue with any other code you need in the method
+	}
 
 	public final OnClickListener meta = new OnClickListener() {
 

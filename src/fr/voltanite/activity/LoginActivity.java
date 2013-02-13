@@ -1,6 +1,5 @@
 package fr.voltanite.activity;
 
-import fr.voltanite.utils.Utils;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -13,9 +12,13 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import fr.voltanite.utils.Utils;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -86,7 +89,21 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
+		findViewById(R.id.reset_login).setOnClickListener(resetLogin);
 	}
+	
+	private final Button.OnClickListener resetLogin = new OnClickListener() {
+		public void onClick(View v) {
+			/*if(LOGINUSR == null && LOGINPWD == null){
+			Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+			startActivity(intent);}
+			else Utils.popDebug(getBaseContext(), "Syncronizationeuh");
+			return false;*/
+			MainActivity.LOGINUSR = null;
+			MainActivity.LOGINPWD = null;
+		}
+
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

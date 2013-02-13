@@ -269,6 +269,9 @@
             android:name="fr.voltanite.activity.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name="fr.voltanite.activity.NodeSearchByCode">
+        </activity>
     </application>
 
 </manifest>

@@ -77,5 +77,14 @@
         android:layout_below="@+id/testJEE"
         android:text="testlogin " 
          style="@style/CustomTheme" />
+
+    <TextView
+        android:id="@+id/searchByCode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/testPHP2"
+        android:onClick="onCodeSearch"
+        android:text="testQRCodeSearch" />
     
 </RelativeLayout>

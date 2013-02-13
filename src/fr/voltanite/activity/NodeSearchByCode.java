@@ -20,10 +20,11 @@ import fr.voltanite.noeud.Noeud;
 import fr.voltanite.noeud.NoeudsBDD;
 import fr.voltanite.utils.Utils;
 
-public class NodeDisplayActivity extends Activity {
+public class NodeSearchByCode extends Activity {
 
 	private static String path;
 	private static int id_pere;
+	private static String searchedCode;
 	String qrcode;
 
 
@@ -41,6 +42,7 @@ public class NodeDisplayActivity extends Activity {
 
 		super.onCreate(savedInstanceState);    
 		setContentView(R.layout.activity_display_noeuds);
+		searchedCode= getIntent().getStringExtra("qrCode");
 		fillNodeLayout();
 
 	}
@@ -51,7 +53,7 @@ public class NodeDisplayActivity extends Activity {
 		nbdd.open();
 		nbdd.raz();
 		nbdd.close();
-		Intent intent = new Intent(this, NodeDisplayActivity.class);		
+		Intent intent = new Intent(this, NodeSearchByCode.class);		
 		intent.putExtra(MainActivity.EXTRA_MESSAGE, "/Racine");
 		intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(MainActivity.id_racine));
 		startActivity(intent);
@@ -78,7 +80,9 @@ public class NodeDisplayActivity extends Activity {
 			nbdd.open();
 			ArrayList<TextView> txtvwNode = new ArrayList<TextView>();
 			ArrayList<LinearLayout> nodes = new ArrayList<LinearLayout>();
-			ArrayList<Noeud> AllNodes = nbdd.getNoeuds();
+			
+			ArrayList<Noeud> RequestedNodes = nbdd.getNoeudsByCode(searchedCode);
+ 			ArrayList<Noeud> AllNodes = nbdd.getNoeuds();
 			int maxId = 0;
 			for (Noeud node : AllNodes)
 			{
@@ -111,7 +115,11 @@ public class NodeDisplayActivity extends Activity {
 						btmp.setLayoutParams(new LayoutParams(
 								LayoutParams.WRAP_CONTENT,
 								LayoutParams.MATCH_PARENT));
-						btmp.setClickable(true);					
+						btmp.setClickable(true);	
+						if (RequestedNodes.contains(current_node))
+						{
+							btmp.setBackgroundColor(0xFFFFF);
+						}
 
 						// Affichage d'un noeud par maintien du click
 						btmp.setOnLongClickListener(new OnLongClickListener() {
@@ -137,7 +145,7 @@ public class NodeDisplayActivity extends Activity {
 
 							public void onClick(View arg0) {
 								System.out.println("Entrée dans le onClick");
-								Intent intent = new Intent(getBaseContext(), NodeDisplayActivity.class);
+								Intent intent = new Intent(getBaseContext(), NodeSearchByCode.class);
 								if(path == null)
 								{
 									setPath("/"+ myPath);
@@ -198,6 +206,7 @@ public class NodeDisplayActivity extends Activity {
 					System.out.println("exception " + e.getMessage() + "    i = " + i );
 				}
 
+//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 			}
 			nbdd.close();
 			for (LinearLayout node : nodes)
@@ -218,6 +227,21 @@ public class NodeDisplayActivity extends Activity {
 
 	public void onBackPressed()
 	{
+//<<<<<<< HEAD
+//		if(path != null){
+//			int lastSlash = path.lastIndexOf('/');
+//			if (lastSlash !=0 ){
+//				path = path.substring(0, lastSlash);
+//			}
+//			else{path = null;}
+//			Intent intent = getIntent();
+//			intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+//			intent.removeExtra(MainActivity.EXTRA_MESSAGE_ID);
+//			intent.putExtra(MainActivity.EXTRA_MESSAGE, path);
+//			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
+//		}
+//		super.onBackPressed();
+//=======
 		System.out.println("backpressed");
 		System.out.println("ExMess : " + getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE));
 		if (getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE).length() == 0)
@@ -258,6 +282,7 @@ public class NodeDisplayActivity extends Activity {
 			intent.putExtra(MainActivity.EXTRA_MESSAGE_ID, String.valueOf(id_pere));
 			startActivity(intent);
 		}
+//>>>>>>> c14f38d2954b7907966cb7d0fe91f07adceaa77e
 	}
 
 
@@ -273,7 +298,6 @@ public class NodeDisplayActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
 
 
 }
